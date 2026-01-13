@@ -1,0 +1,19 @@
+.wbk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:14px;
+  margin-top:14px;
+}
+.wbk-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.wbk-shortcode{
+  width:100%;
+  min-height:68px;
+  margin:10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
