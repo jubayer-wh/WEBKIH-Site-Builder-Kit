@@ -1,0 +1,122 @@
+    :root {
+        --webkih-navy: #011c39;
+        --webkih-white: #ffffff;
+    }
+
+    .wbk-map-section {
+        background: var(--webkih-white);
+        padding: 40px 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .wbk-map-container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .wbk-map-card {
+        display: flex;
+        flex-wrap: wrap;
+        background: var(--webkih-navy);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(1, 28, 57, 0.1);
+    }
+
+    /* Info Column */
+    .wbk-map-info {
+        flex: 1 1 350px;
+        padding: 40px;
+        color: var(--webkih-white);
+    }
+
+    .wbk-map-info h2 {
+        font-size: 1.8rem;
+        margin: 0 0 15px 0;
+        color: var(--webkih-white);
+    }
+
+    .wbk-details {
+        margin-bottom: 25px;
+    }
+
+    .wbk-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    /* Map Column */
+    .wbk-map-iframe {
+        flex: 1 1 450px;
+        min-height: 400px;
+        line-height: 0;
+    }
+
+    .wbk-map-iframe iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .wbk-map-btn {
+        display: inline-block;
+        background: var(--webkih-white);
+        color: var(--webkih-navy);
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition: opacity 0.3s;
+    }
+
+    .wbk-map-btn:hover {
+        opacity: 0.9;
+        color: var(--webkih-navy);
+    }
+
+    /* MOBILE OPTIMIZATIONS */
+    @media (max-width: 767px) {
+        .wbk-map-section {
+            padding: 15px 5px;
+        }
+        
+        .wbk-map-container {
+            padding: 0 10px;
+        }
+
+        .wbk-map-card {
+            border-radius: 12px;
+        }
+
+        .wbk-map-info {
+            padding: 20px;
+            flex: 1 1 100%;
+        }
+
+        .wbk-map-info h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .wbk-map-iframe {
+            min-height: 250px;
+            flex: 1 1 100%;
+        }
+
+        .wbk-map-btn {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .wbk-row {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+    }
