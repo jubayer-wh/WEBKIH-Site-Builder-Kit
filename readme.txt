@@ -6,7 +6,7 @@ Tested up to: 6.6
 Stable tag: 1.0.0
 License: GPLv2 or later
 
-A modular website builder toolkit by WEBKIH. Add hero, slider, team, packages, contact, loader via shortcodes.
+A modular website builder toolkit by WEBKIH. Add hero, slider, team, packages, contact, loader via shortcodes and much more..
 
 == Installation ==
 1. Upload plugin folder to /wp-content/plugins/
