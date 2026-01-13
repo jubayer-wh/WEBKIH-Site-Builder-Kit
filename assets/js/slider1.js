@@ -1,0 +1,167 @@
+:root {
+    --deep-blue: #002e63; /* From your brand logo */
+    --accent-orange: #e67e22;
+    --pure-white: #ffffff;
+}
+
+/* Slider Container - Compact Height */
+.wbk-tour-hero-swiper {
+    width: 100%;
+    height: 450px; /* Reduced from 600px for a more compact look */
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    background: #000;
+}
+
+.wbk-swiper-slide {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ken Burns Effect */
+.wbk-slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 8s linear;
+}
+
+/* ✅ Swiper adds .swiper-slide-active (not wbk-swiper-slide-active) */
+.swiper-slide-active .wbk-slide-bg {
+    transform: scale(1.15);
+}
+
+/* Overlay - Adjusted for better text contrast */
+.wbk-slide-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,46,99,0.9), rgba(0,46,99,0.3));
+    z-index: 2;
+}
+
+/* Content Area */
+.wbk-slide-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1100px;
+    padding: 0 6%;
+    text-align: left;
+    width: 100%;
+}
+
+.wbk-slide-content h2,
+.wbk-slide-content p,
+.wbk-slide-content .wbk-hero-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    color: var(--pure-white); /* Ensures all text is white */
+}
+
+/* ✅ Text reveal on active slide (must target Swiper active class) */
+.swiper-slide-active .wbk-slide-content h2 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.swiper-slide-active .wbk-slide-content p { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+.swiper-slide-active .wbk-slide-content .wbk-hero-cta { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+/* Fixed Title Color */
+.wbk-slide-content h2 {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: var(--pure-white) !important;
+}
+
+.wbk-slide-content p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    margin-bottom: 25px;
+    max-width: 550px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Fixed Button Color to Deep Blue */
+.wbk-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 35px;
+    background: var(--deep-blue); /* Changed to your brand blue */
+    color: var(--pure-white) !important;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 15px;
+    border: 2px solid transparent;
+    transition: 0.3s ease-in-out !important;
+}
+
+.wbk-hero-cta:hover {
+    background: transparent;
+    border-color: var(--pure-white);
+    transform: translateY(-2px) !important;
+}
+
+/* ✅ Pagination (Swiper outputs .swiper-pagination-bullet) */
+.wbk-tour-hero-swiper .swiper-pagination-bullet {
+    background: rgba(255,255,255,0.4) !important;
+    opacity: 1;
+}
+.wbk-tour-hero-swiper .swiper-pagination-bullet-active {
+    background: var(--pure-white) !important;
+    width: 25px;
+    border-radius: 4px;
+}
+
+/* Ultra-Compact Mobile Responsiveness */
+@media (max-width: 768px) {
+    .wbk-tour-hero-swiper {
+        height: 220px; /* Highly compact height for mobile */
+        border-radius: 12px; /* Smaller radius for mobile or set to 0 for full-width */
+        margin-bottom: 20px;
+    }
+
+    .wbk-slide-overlay {
+        background: rgba(0, 46, 99, 0.75); /* Darker uniform overlay for better text legibility */
+    }
+
+    .wbk-slide-content {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .wbk-slide-content h2 {
+        font-size: 1.6rem !important; /* Compact title */
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .wbk-slide-content p {
+        font-size: 0.85rem !important; /* Smaller description */
+        margin: 0 auto 15px;
+        line-height: 1.4;
+        max-width: 280px;
+    }
+
+    .wbk-hero-cta {
+        padding: 7px 8px;
+        font-size: 13px;
+        border: none;
+    }
+
+    /* ✅ Smaller pagination for compact feel */
+    .wbk-tour-hero-swiper .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+    }
+    .wbk-tour-hero-swiper .swiper-pagination-bullet-active {
+        width: 18px;
+    }
+}

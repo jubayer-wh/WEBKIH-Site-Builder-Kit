@@ -18,13 +18,11 @@ define('WBK_URL', plugin_dir_url(__FILE__));
 require_once WBK_DIR . 'admin/core.php';
 
 // Addons (shortcodes)
-require_once WBK_DIR . 'includes/wbk-hero1.php';
 require_once WBK_DIR . 'includes/wbk-slider1.php';
 require_once WBK_DIR . 'includes/wbk-team1.php';
-require_once WBK_DIR . 'includes/wbk-package1.php';
-require_once WBK_DIR . 'includes/wbk-loader1.php';
 require_once WBK_DIR . 'includes/wbk-map1.php';
 require_once WBK_DIR . 'includes/wbk-success1.php';
+
 
 // Frontend preview handler
 add_action('template_redirect', function () {
