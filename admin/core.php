@@ -24,6 +24,7 @@ function wbk_enqueue_assets() {
         wp_enqueue_style('wbk-map1-css', WBK_URL . 'assets/css/map1.css', [], WBK_VER);
     });
 
+
 }
 wbk_enqueue_assets();
 
@@ -69,6 +70,16 @@ add_action('admin_menu', function(){
     'wbk_render_map1_settings'
 );
 
+add_submenu_page(
+    'wbk-dashboard',
+    'Success Stories Settings',
+    'Success Settings',
+    'manage_options',
+    'wbk-success1-settings',
+    'wbk_render_success1_settings_page'
+);
+
+
 });
 
 /**
@@ -89,3 +100,9 @@ function wbk_render_docs() {
 function wbk_render_map1_settings() {
     require WBK_DIR . 'admin/wbk-map1-settings.php';
 }
+
+function wbk_render_success1_settings_page() {
+    require WBK_DIR . 'admin/wbk-success1-settings.php';
+}
+
+

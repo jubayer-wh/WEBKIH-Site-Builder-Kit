@@ -1,0 +1,116 @@
+    :root {
+        --deep-blue: #002e63;
+        --accent-blue: #0056b3;
+        --success-green: #27ae60;
+        --light-gray: #f4f7f9;
+    }
+
+    .wbk-success-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .wbk-section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .wbk-section-title h2 {
+        color: var(--deep-blue);
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    .wbk-success-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .wbk-success-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wbk-success-image-wrap {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .wbk-success-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .wbk-visa-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--success-green);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .wbk-success-content {
+        padding: 25px;
+    }
+
+    .wbk-success-content h3 {
+        color: var(--deep-blue);
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+
+    .wbk-destination-tag {
+        color: var(--accent-blue);
+        font-weight: 600;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .wbk-success-quote {
+        font-style: italic;
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        position: relative;
+    }
+
+    .wbk-success-quote::before {
+        content: '"';
+        font-size: 40px;
+        color: #ddd;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        z-index: -1;
+    }
+
+    .wbk-success-footer {
+        padding: 20px 25px;
+        background: #fafafa;
+        border-top: 1px solid #eee;
+        font-size: 13px;
+        color: #888;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+        .wbk-success-grid { grid-template-columns: 1fr; }
+        .wbk-section-title h2 { font-size: 1.8rem; }
+    }
