@@ -23,6 +23,7 @@ require_once WBK_DIR . 'includes/wbk-slider2.php';
 require_once WBK_DIR . 'includes/wbk-team1.php';
 require_once WBK_DIR . 'includes/wbk-map1.php';
 require_once WBK_DIR . 'includes/wbk-success1.php';
+require_once WBK_DIR . 'includes/wbk-package1.php';
 
 
 
