@@ -31,7 +31,7 @@ add_action('init', function () {
         'edit_item'          => 'Edit Story',
         'new_item'           => 'New Story',
         'view_item'          => 'View Story',
-        'all_items'          => 'All Stories',
+        'all_items'          => 'Stories 1',
         'search_items'       => 'Search Stories',
         'not_found'          => 'No stories found.',
         'not_found_in_trash' => 'No stories found in Trash.',

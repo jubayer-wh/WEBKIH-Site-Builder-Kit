@@ -23,7 +23,7 @@ add_action('init', function () {
         'edit_item'          => 'Edit Team Member',
         'new_item'           => 'New Team Member',
         'view_item'          => 'View Team Member',
-        'all_items'          => 'All Team Members',
+        'all_items'          => 'Team Members 1',
         'search_items'       => 'Search Team Members',
         'not_found'          => 'No team members found.',
         'not_found_in_trash' => 'No team members found in Trash.',

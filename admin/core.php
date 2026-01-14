@@ -68,6 +68,17 @@ add_action('admin_menu', function () {
      * ✅ Single Settings Hub (all module settings inside)
      * URL: admin.php?page=wbk-settings
      */
+
+    add_submenu_page(
+        'wbk-dashboard',
+        'Map (Style 1)',
+        'Map (Style 1)',
+        'manage_options',
+        'wbk-map1',
+        'wbk_render_map1_admin_page'
+    );
+
+
     add_submenu_page(
         'wbk-dashboard',
         'WEBKIH Kit Settings',
@@ -110,4 +121,8 @@ function wbk_render_settings_hub() {
 
 function wbk_render_docs() {
     require WBK_DIR . 'admin/wbk-documentation.php';
+}
+
+function wbk_render_map1_settings() {
+    require WBK_DIR . 'includes/wbk-map1.php';
 }

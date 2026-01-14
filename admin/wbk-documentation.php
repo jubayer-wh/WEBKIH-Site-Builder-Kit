@@ -160,39 +160,34 @@ if ( ! defined('ABSPATH') ) exit;
 
             <div class="wbk-sc-grid">
 
-                <div class="wbk-sc-card active" data-sc="[wbk_hero1]">
-                    <span class="wbk-sc-code">[wbk_hero1]</span>
-                    <div class="wbk-sc-desc">Hero section</div>
+                <div class="wbk-sc-card active" data-sc="[wbk_slider1]">
+                    <span class="wbk-sc-code">[wbk_slider1]</span>
+                    <div class="wbk-sc-desc">Slider 1</div>
                 </div>
 
-                <div class="wbk-sc-card" data-sc="[wbk_slider1]">
-                    <span class="wbk-sc-code">[wbk_slider1]</span>
-                    <div class="wbk-sc-desc">Slider section</div>
+                <div class="wbk-sc-card" data-sc="[wbk_slider2]">
+                    <span class="wbk-sc-code">[wbk_slider2]</span>
+                    <div class="wbk-sc-desc">Slider 2</div>
                 </div>
 
                 <div class="wbk-sc-card" data-sc="[wbk_team1]">
                     <span class="wbk-sc-code">[wbk_team1]</span>
-                    <div class="wbk-sc-desc">Team members</div>
-                </div>
-
-                <div class="wbk-sc-card" data-sc="[wbk_package1]">
-                    <span class="wbk-sc-code">[wbk_package1]</span>
-                    <div class="wbk-sc-desc">Packages / pricing</div>
+                    <div class="wbk-sc-desc">Team members 1</div>
                 </div>
 
                 <div class="wbk-sc-card" data-sc="[wbk_map1]">
                     <span class="wbk-sc-code">[wbk_map1]</span>
-                    <div class="wbk-sc-desc">Contact block</div>
+                    <div class="wbk-sc-desc">Map Block 1</div>
                 </div>
 
                 <div class="wbk-sc-card" data-sc="[wbk_success1_3]">
                     <span class="wbk-sc-code">[wbk_success1_3]</span>
-                    <div class="wbk-sc-desc">Success stories (3)</div>
+                    <div class="wbk-sc-desc">Success stories 1</div>
                 </div>
 
-                <div class="wbk-sc-card" data-sc="[wbk_success1_all]">
-                    <span class="wbk-sc-code">[wbk_success1_all]</span>
-                    <div class="wbk-sc-desc">All success stories</div>
+                <div class="wbk-sc-card" data-sc="[wbk_package1]">
+                    <span class="wbk-sc-code">[wbk_package1]</span>
+                    <div class="wbk-sc-desc">Packages 1</div>
                 </div>
 
             </div>
@@ -208,7 +203,7 @@ if ( ! defined('ABSPATH') ) exit;
             <iframe
                 id="wbkPreviewFrame"
                 class="wbk-preview-frame"
-                src="<?php echo esc_url( home_url( '?wbk_preview=[wbk_hero1]' ) ); ?>">
+                src="<?php echo esc_url( home_url( '?wbk_preview=[wbk_slider1]' ) ); ?>">
             </iframe>
         </div>
 

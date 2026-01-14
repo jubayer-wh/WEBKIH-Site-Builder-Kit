@@ -20,6 +20,7 @@ $modules = [
         'desc'  => 'Title, address, button, iframe',
         'file'  => WBK_DIR . 'admin/modules/map1-settings-panel.php',
     ],
+
     // Add more modules later:
     // 'hero1' => ...
     // 'reviews1' => ...

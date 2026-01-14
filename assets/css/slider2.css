@@ -1,0 +1,126 @@
+.wbk-slider2-container{
+    position: relative;
+    max-width: 1000px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Viewport */
+.wbk-slider2-viewport{
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    scrollbar-width: none;    /* Hide scrollbar Firefox */
+    scrollbar-gutter: stable both-edges;
+    touch-action: pan-x;
+}
+
+.wbk-slider2-viewport::-webkit-scrollbar{
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* Slide */
+.wbk-slider2-slide{
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    position: relative;
+    height: 450px;
+}
+
+.wbk-slider2-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Slide Text Overlay */
+.wbk-slider2-slide-content{
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    max-width: 80%;
+}
+
+.wbk-slider2-title{
+    margin: 0 0 8px;
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+
+.wbk-slider2-desc{
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Navigation Buttons */
+.wbk-slider2-nav{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+    z-index: 10;
+}
+
+.wbk-slider2-nav:hover{ background: #fff; }
+
+.wbk-slider2-nav:focus-visible{
+    outline: 2px solid rgba(56,189,248,.9);
+    outline-offset: 2px;
+}
+
+.wbk-slider2-prev{ left: 15px; }
+.wbk-slider2-next{ right: 15px; }
+
+/* Dots */
+.wbk-slider2-dots{
+    text-align: center;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+}
+
+.wbk-slider2-dot{
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.wbk-slider2-dot.active{
+    background-color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+    .wbk-slider2-slide{ height: 300px; }
+    .wbk-slider2-slide-content{
+        bottom: 20px;
+        left: 20px;
+        padding: 14px;
+        font-size: 0.85rem;
+        max-width: calc(100% - 40px);
+    }
+    .wbk-slider2-title{
+        font-size: 1.2rem;
+    }
+}
