@@ -93,7 +93,7 @@ add_action('save_post_wbk_team', function ($post_id) {
     update_post_meta(
         $post_id,
         '_wbk_team_role',
-        sanitize_text_field($_POST['wbk_team_role'] ?? '')
+        sanitize_text_field( wp_unslash($_POST['wbk_team_role'] ?? '') )
     );
 });
 
@@ -134,7 +134,7 @@ add_shortcode('wbk_team1', function ($atts) {
                         $role = get_post_meta(get_the_ID(), '_wbk_team_role', true);
                         $img  = has_post_thumbnail()
                             ? get_the_post_thumbnail_url(get_the_ID(), 'large')
-                            : 'https://via.placeholder.com/600x600?text=Team';
+                            : WBK_URL . 'assets/images/team-placeholder.svg';
                     ?>
 
                     <div class="wbk-team-card">

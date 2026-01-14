@@ -14,12 +14,13 @@ A modular website builder toolkit by WEBKIH. Add hero, slider, team, packages, c
 3. Go to WEBKIH Kit from Dashboard
 
 == Shortcodes ==
-[wbk_hero1]
 [wbk_slider1]
+[wbk_slider2]
 [wbk_team1]
+[wbk_map1]
+[wbk_success1_3]
+[wbk_success1_all]
 [wbk_package1]
-[wbk_contact1]
-[wbk_loader1]
 
 == Changelog ==
 = 1.0.0 =

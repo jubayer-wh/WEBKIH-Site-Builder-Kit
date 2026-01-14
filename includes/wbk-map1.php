@@ -93,7 +93,7 @@ add_shortcode('wbk_map1', function () {
 function wbk_render_map1_admin_page() {
 
     if ( ! current_user_can('manage_options') ) {
-        wp_die( esc_html__('You do not have permission to access this page.', 'wbk') );
+        wp_die( esc_html__('You do not have permission to access this page.', 'webkih-site-builder-kit') );
     }
 
     $defaults = wbk_map1_get_defaults();
@@ -117,7 +117,7 @@ function wbk_render_map1_admin_page() {
         update_option($opt_key, array_merge($defaults, $data));
 
         echo '<div class="notice notice-success is-dismissible"><p>' .
-            esc_html__('Map settings saved.', 'wbk') .
+            esc_html__('Map settings saved.', 'webkih-site-builder-kit') .
         '</p></div>';
     }
 

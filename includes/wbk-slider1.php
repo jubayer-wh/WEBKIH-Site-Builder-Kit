@@ -49,36 +49,19 @@ add_action( 'wp_enqueue_scripts', function () {
 
     if ( is_admin() ) return;
 
-    // Swiper CSS
-    wp_enqueue_style(
-        'swiper-css',
-        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-        [],
-        '11.0'
-    );
-
     // Slider 1 CSS
     wp_enqueue_style(
         'wbk-slider1-style',
         WBK_URL . 'assets/css/slider1.css',
-        ['swiper-css'],
+        [],
         WBK_VER
     );
 
-    // Swiper JS
-    wp_enqueue_script(
-        'swiper-js',
-        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-        [],
-        '11.0',
-        true
-    );
-
-    // ✅ Slider 1 JS (your dedicated file)
+    // ✅ Slider 1 JS (no external dependency)
     wp_enqueue_script(
         'wbk-slider1-js',
         WBK_URL . 'assets/js/slider1.js',
-        ['swiper-js'],
+        [],
         WBK_VER,
         true
     );

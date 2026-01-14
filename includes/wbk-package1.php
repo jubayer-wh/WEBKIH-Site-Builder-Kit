@@ -18,18 +18,18 @@ if ( ! defined('ABSPATH') ) exit;
 add_action('init', function () {
 
     $labels = [
-        'name'               => __('Packages 1', 'wbk'),
-        'singular_name'      => __('Package', 'wbk'),
-        'menu_name'          => __('Packages 1', 'wbk'),
-        'add_new'            => __('Add New', 'wbk'),
-        'add_new_item'       => __('Add New Package', 'wbk'),
-        'edit_item'          => __('Edit Package', 'wbk'),
-        'new_item'           => __('New Package', 'wbk'),
-        'view_item'          => __('View Package', 'wbk'),
-        'all_items'          => __('Packages 1', 'wbk'),
-        'search_items'       => __('Search Packages', 'wbk'),
-        'not_found'          => __('No packages found.', 'wbk'),
-        'not_found_in_trash' => __('No packages found in Trash.', 'wbk'),
+        'name'               => __('Packages 1', 'webkih-site-builder-kit'),
+        'singular_name'      => __('Package', 'webkih-site-builder-kit'),
+        'menu_name'          => __('Packages 1', 'webkih-site-builder-kit'),
+        'add_new'            => __('Add New', 'webkih-site-builder-kit'),
+        'add_new_item'       => __('Add New Package', 'webkih-site-builder-kit'),
+        'edit_item'          => __('Edit Package', 'webkih-site-builder-kit'),
+        'new_item'           => __('New Package', 'webkih-site-builder-kit'),
+        'view_item'          => __('View Package', 'webkih-site-builder-kit'),
+        'all_items'          => __('Packages 1', 'webkih-site-builder-kit'),
+        'search_items'       => __('Search Packages', 'webkih-site-builder-kit'),
+        'not_found'          => __('No packages found.', 'webkih-site-builder-kit'),
+        'not_found_in_trash' => __('No packages found in Trash.', 'webkih-site-builder-kit'),
     ];
 
     register_post_type('wbk_package1', [
@@ -74,7 +74,7 @@ add_action('wp_enqueue_scripts', function () {
 add_action('add_meta_boxes', function () {
     add_meta_box(
         'wbk_package1_meta',
-        __('Package Details', 'wbk'),
+        __('Package Details', 'webkih-site-builder-kit'),
         'wbk_package1_meta_cb',
         'wbk_package1',
         'normal',
@@ -94,7 +94,7 @@ function wbk_package1_meta_cb($post) {
     ?>
     <table class="form-table" role="presentation">
         <tr>
-            <th><label for="wbk_pkg1_duration"><?php esc_html_e('Duration Badge', 'wbk'); ?></label></th>
+            <th><label for="wbk_pkg1_duration"><?php esc_html_e('Duration Badge', 'webkih-site-builder-kit'); ?></label></th>
             <td>
                 <input type="text" class="regular-text" id="wbk_pkg1_duration" name="wbk_pkg1_duration"
                        value="<?php echo esc_attr($duration); ?>"
@@ -103,17 +103,17 @@ function wbk_package1_meta_cb($post) {
         </tr>
 
         <tr>
-            <th><label for="wbk_pkg1_price"><?php esc_html_e('Price (Text)', 'wbk'); ?></label></th>
+            <th><label for="wbk_pkg1_price"><?php esc_html_e('Price (Text)', 'webkih-site-builder-kit'); ?></label></th>
             <td>
                 <input type="text" class="regular-text" id="wbk_pkg1_price" name="wbk_pkg1_price"
                        value="<?php echo esc_attr($price); ?>"
                        placeholder="BDT 45,500">
-                <p class="description"><?php esc_html_e('Keep it as text so you can use BDT/USD easily.', 'wbk'); ?></p>
+                <p class="description"><?php esc_html_e('Keep it as text so you can use BDT/USD easily.', 'webkih-site-builder-kit'); ?></p>
             </td>
         </tr>
 
         <tr>
-            <th><label for="wbk_pkg1_destinations"><?php esc_html_e('Destinations', 'wbk'); ?></label></th>
+            <th><label for="wbk_pkg1_destinations"><?php esc_html_e('Destinations', 'webkih-site-builder-kit'); ?></label></th>
             <td>
                 <input type="text" class="regular-text" id="wbk_pkg1_destinations" name="wbk_pkg1_destinations"
                        value="<?php echo esc_attr($destinations); ?>"
@@ -122,7 +122,7 @@ function wbk_package1_meta_cb($post) {
         </tr>
 
         <tr>
-            <th><label for="wbk_pkg1_book_text"><?php esc_html_e('Book Button Text', 'wbk'); ?></label></th>
+            <th><label for="wbk_pkg1_book_text"><?php esc_html_e('Book Button Text', 'webkih-site-builder-kit'); ?></label></th>
             <td>
                 <input type="text" class="regular-text" id="wbk_pkg1_book_text" name="wbk_pkg1_book_text"
                        value="<?php echo esc_attr($book_text); ?>"
@@ -131,7 +131,7 @@ function wbk_package1_meta_cb($post) {
         </tr>
 
         <tr>
-            <th><label for="wbk_pkg1_book_url"><?php esc_html_e('Book Button URL', 'wbk'); ?></label></th>
+            <th><label for="wbk_pkg1_book_url"><?php esc_html_e('Book Button URL', 'webkih-site-builder-kit'); ?></label></th>
             <td>
                 <input type="url" class="large-text" id="wbk_pkg1_book_url" name="wbk_pkg1_book_url"
                        value="<?php echo esc_attr($book_url); ?>"
@@ -140,7 +140,7 @@ function wbk_package1_meta_cb($post) {
         </tr>
     </table>
 
-    <p><strong><?php esc_html_e('Hero/Image:', 'wbk'); ?></strong> <?php esc_html_e('Use Featured Image.', 'wbk'); ?></p>
+    <p><strong><?php esc_html_e('Hero/Image:', 'webkih-site-builder-kit'); ?></strong> <?php esc_html_e('Use Featured Image.', 'webkih-site-builder-kit'); ?></p>
     <?php
 }
 
@@ -222,7 +222,7 @@ add_shortcode('wbk_package1', function () {
                             <?php endif; ?>
 
                             <a href="<?php echo esc_url($url); ?>" class="wbk-package1-btn">
-                                <?php esc_html_e('Details', 'wbk'); ?>
+                                <?php esc_html_e('Details', 'webkih-site-builder-kit'); ?>
                             </a>
                         </div>
                     </div>
@@ -237,80 +237,15 @@ add_shortcode('wbk_package1', function () {
 
 
 /*--------------------------------------------------------------
-4) SINGLE PAGE OUTPUT (uses your HTML layout)
-   No extra template files required
+4) SINGLE PAGE TEMPLATE OVERRIDE
 --------------------------------------------------------------*/
-add_action('template_redirect', function () {
+add_filter('template_include', function ($template) {
+    if ( is_singular('wbk_package1') ) {
+        $candidate = WBK_DIR . 'templates/single-wbk_package1.php';
+        if ( file_exists($candidate) ) {
+            return $candidate;
+        }
+    }
 
-    if ( ! is_singular('wbk_package1') ) return;
-
-    // Enqueue single CSS
-    wp_enqueue_style('wbk-package1-single', WBK_URL . 'assets/css/package1-single.css', [], WBK_VER);
-
-    global $post;
-    if ( ! ($post instanceof WP_Post) ) return;
-
-    $id = $post->ID;
-
-    $img = has_post_thumbnail($id) ? get_the_post_thumbnail_url($id, 'full') : '';
-    $dur = (string) get_post_meta($id, '_wbk_pkg1_duration', true);
-    $price = (string) get_post_meta($id, '_wbk_pkg1_price', true);
-    $destinations = (string) get_post_meta($id, '_wbk_pkg1_destinations', true);
-    $book_text = (string) get_post_meta($id, '_wbk_pkg1_book_text', true);
-    $book_url  = (string) get_post_meta($id, '_wbk_pkg1_book_url', true);
-
-    // Content area: use editor content for Description
-    $description = apply_filters('the_content', $post->post_content);
-
-    // Basic WP header/footer for theme compatibility
-    get_header();
-
-    ?>
-    <div class="wbk-package1-single">
-
-        <div class="wbk-package1-hero" style="<?php echo $img ? 'background-image:url(' . esc_url($img) . ');' : ''; ?>">
-            <div class="wbk-package1-hero-overlay">
-                <h1><?php echo esc_html( get_the_title($id) ); ?></h1>
-            </div>
-        </div>
-
-        <div class="wbk-package1-container">
-            <div class="wbk-package1-main">
-                <h3 style="color:#002e63; margin-top:0;">Description</h3>
-                <?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-
-                <!-- Optional: If you later want itinerary as a field, we can add it as a textarea meta -->
-            </div>
-
-            <div class="wbk-package1-sidebar">
-                <div class="wbk-package1-widget">
-                    <h4>Trip Summary</h4>
-
-                    <?php if ( $dur !== '' ) : ?>
-                        <p><strong>Duration:</strong> <?php echo esc_html($dur); ?></p>
-                    <?php endif; ?>
-
-                    <?php if ( $price !== '' ) : ?>
-                        <p><strong>Price:</strong> <span class="wbk-p-amt"><?php echo esc_html($price); ?></span></p>
-                    <?php endif; ?>
-
-                    <?php if ( $destinations !== '' ) : ?>
-                        <p><strong>Destinations:</strong> <?php echo esc_html($destinations); ?></p>
-                    <?php endif; ?>
-
-                    <?php
-                    $final_book_text = $book_text !== '' ? $book_text : __('Book This Trip', 'wbk');
-                    $final_book_url  = $book_url !== '' ? $book_url : '#';
-                    ?>
-                    <a href="<?php echo esc_url($final_book_url); ?>" class="wbk-p-btn">
-                        <?php echo esc_html($final_book_text); ?>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-
-    get_footer();
-    exit;
+    return $template;
 });
