@@ -35,7 +35,10 @@ add_action('init', function () {
         'show_in_menu'       => 'wbk-dashboard', // 👈 KEY LINE
         'has_archive'        => false,
         'rewrite'            => false,
-        'supports'           => ['title', 'thumbnail'],
+
+        // ✅ Added page-attributes to enable menu_order ("Order" field)
+        'supports'           => ['title', 'thumbnail', 'page-attributes'],
+
         'capability_type'    => 'post',
     ]);
 });
@@ -93,8 +96,53 @@ add_action('save_post_wbk_team', function ($post_id) {
     update_post_meta(
         $post_id,
         '_wbk_team_role',
-        sanitize_text_field($_POST['wbk_team_role'] ?? '')
+        sanitize_text_field( wp_unslash($_POST['wbk_team_role'] ?? '') )
     );
+});
+
+
+/*--------------------------------------------------------------
+3.5) ADMIN LIST: SHOW "ORDER" COLUMN + SORTABLE
+--------------------------------------------------------------*/
+add_filter('manage_wbk_team_posts_columns', function ($cols) {
+    $new = [];
+    foreach ($cols as $key => $label) {
+        if ($key === 'title') {
+            $new['title'] = $label;
+            $new['wbk_order'] = 'Order';
+            continue;
+        }
+        $new[$key] = $label;
+    }
+    return $new;
+});
+
+add_action('manage_wbk_team_posts_custom_column', function ($col, $post_id) {
+    if ($col === 'wbk_order') {
+        echo (int) get_post_field('menu_order', $post_id);
+    }
+}, 10, 2);
+
+add_filter('manage_edit-wbk_team_sortable_columns', function ($cols) {
+    $cols['wbk_order'] = 'menu_order';
+    return $cols;
+});
+
+add_action('pre_get_posts', function ($q) {
+    if ( ! is_admin() || ! $q->is_main_query() ) return;
+
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if ( ! $screen || $screen->post_type !== 'wbk_team' ) return;
+
+    // Default admin ordering: menu_order ASC then date DESC
+    if ( ! $q->get('orderby') ) {
+        $q->set('orderby', ['menu_order' => 'ASC', 'date' => 'DESC']);
+    }
+
+    // If user clicks the Order column to sort
+    if ( $q->get('orderby') === 'menu_order' ) {
+        $q->set('orderby', 'menu_order');
+    }
 });
 
 
@@ -119,6 +167,9 @@ add_shortcode('wbk_team1', function ($atts) {
     $q = new WP_Query([
         'post_type'      => 'wbk_team',
         'posts_per_page' => (int) $atts['limit'],
+
+        // ✅ Custom order: first by menu_order (manual), then title
+        'orderby'        => ['menu_order' => 'ASC', 'title' => $atts['order']],
         'order'          => $atts['order'],
     ]);
 
@@ -134,7 +185,7 @@ add_shortcode('wbk_team1', function ($atts) {
                         $role = get_post_meta(get_the_ID(), '_wbk_team_role', true);
                         $img  = has_post_thumbnail()
                             ? get_the_post_thumbnail_url(get_the_ID(), 'large')
-                            : 'https://via.placeholder.com/600x600?text=Team';
+                            : WBK_URL . 'assets/images/team-placeholder.svg';
                     ?>
 
                     <div class="wbk-team-card">
