@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WEBKIH Site Builder Kit
- * Description: Modular website sections (Hero, Slider, Team, Packages, Contact, Loader) with shortcodes + admin gallery.
+ * Description: GH8-FWG1.0.0 Modular website sections (Hero, Slider, Team, Packages, Contact, Loader) with shortcodes + admin gallery.
  * Version: 1.0.0
  * Author: WEBKIH
  * Author url: https://webkih.com/about/
@@ -105,6 +105,7 @@ add_action('template_redirect', function () {
     <?php
     exit;
 });
+
 
 
 
