@@ -15,13 +15,13 @@ define('WBK_VER', '1.0.0');
 define('WBK_DIR', plugin_dir_path(__FILE__));
 define('WBK_URL', plugin_dir_url(__FILE__));
 
-add_action('plugins_loaded', function () {
-    load_plugin_textdomain(
-        'webkih-site-builder-kit',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages'
-    );
-});
+/**
+ * ✅ WP 4.6+ loads translations automatically when:
+ * - Text Domain is set in plugin header
+ * - Languages are in /languages folder
+ *
+ * So we do NOT call load_plugin_textdomain() to satisfy Plugin Check.
+ */
 
 // Core: assets + admin menu
 require_once WBK_DIR . 'admin/core.php';
@@ -35,8 +35,9 @@ require_once WBK_DIR . 'includes/wbk-success1.php';
 require_once WBK_DIR . 'includes/wbk-package1.php';
 
 
-
-// Frontend preview handler
+/**
+ * Frontend preview handler
+ */
 add_action('template_redirect', function () {
 
     if ( ! isset($_GET['wbk_preview']) ) {
@@ -49,7 +50,20 @@ add_action('template_redirect', function () {
         exit;
     }
 
-    $raw = wp_unslash($_GET['wbk_preview']);
+    // ✅ Nonce required for security + Plugin Check
+    $nonce = isset($_GET['_wbk_nonce'])
+        ? sanitize_text_field( wp_unslash($_GET['_wbk_nonce']) )
+        : '';
+
+    if ( ! $nonce || ! wp_verify_nonce($nonce, 'wbk_preview_shortcode') ) {
+        status_header(403);
+        echo 'Invalid nonce.';
+        exit;
+    }
+
+    // ✅ Sanitize input early (still allow attributes)
+    $raw = sanitize_text_field( wp_unslash($_GET['wbk_preview']) );
+    $raw = trim($raw);
 
     /**
      * Security: whitelist ONLY your plugin shortcodes
@@ -59,7 +73,6 @@ add_action('template_redirect', function () {
      *  - wbk_success1_3 cat="x"
      *  - [wbk_success1_3 cat="x"]
      */
-    $raw = trim($raw);
 
     // If they passed just "wbk_xxx", wrap it
     if ( $raw !== '' && $raw[0] !== '[' ) {
@@ -83,29 +96,21 @@ add_action('template_redirect', function () {
     <head>
         <meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php
-        /**
-         * Important:
-         * - This will output enqueued CSS/JS from your shortcode (wp_enqueue_style calls)
-         * - Also outputs theme styles (fine for accurate preview)
-         */
-        wp_head();
-        ?>
+        <?php wp_head(); ?>
         <style>
-            /* Keep preview clean and responsive */
             body{ margin:0; padding:18px; background:#fff; }
             img{ max-width:100%; height:auto; }
         </style>
     </head>
     <body>
-        <?php echo do_shortcode( $raw ); ?>
+        <?php
+        // Intentionally rendering shortcode output for admin-only preview.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo do_shortcode( $raw );
+        ?>
         <?php wp_footer(); ?>
     </body>
     </html>
     <?php
     exit;
 });
-
-
-
-

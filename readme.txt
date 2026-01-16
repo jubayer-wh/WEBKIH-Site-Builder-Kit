@@ -1,8 +1,8 @@
 === WEBKIH Site Builder Kit ===
 Contributors: jubayerh1, webkih
-Tags: website builder, shortcodes, agency, hero, slider, team, packages
+Tags: websitebuilder, agency, slider, team, packages
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.9
 Stable tag: 1.0.0
 License: GPLv2 or later
 

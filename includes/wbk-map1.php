@@ -19,7 +19,7 @@ function wbk_map1_get_defaults() {
         'email'       => 'jubayer@webkih.com',
         'hours'       => 'Sat - Thu | 9 AM - 8 PM',
         'button_text' => 'Get Directions',
-        'button_url'  => 'https://maps.app.goo.gl/gNeAjCxHXWLsrKwE6',
+        'button_url'  => 'https://www.google.com/maps/place/WEBKIH/@24.7944884,90.8598375,17z',
         'iframe_src'  => '',
     ];
 }
@@ -81,7 +81,17 @@ function wbk_map1_render_markup($s) {
     return ob_get_clean();
 }
 
+
 add_shortcode('wbk_map1', function () {
+
+    // ✅ Always load Map1 CSS when shortcode is used (Elementor-safe)
+    wp_enqueue_style(
+        'wbk-map1-css',
+        WBK_URL . 'assets/css/map1.css',
+        [],
+        WBK_VER
+    );
+
     $s = wbk_map1_get_settings();
     return wbk_map1_render_markup($s);
 });

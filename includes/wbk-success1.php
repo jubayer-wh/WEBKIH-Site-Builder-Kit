@@ -235,22 +235,25 @@ function wbk_success1_location_icon() {
 6) SHORTCODE RENDER FUNCTION
 --------------------------------------------------------------*/
 function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
+    $inline_css = '';
 
     wp_enqueue_style('wbk-success1-css', WBK_URL . 'assets/css/success1.css', [], WBK_VER);
+    wp_add_inline_style('wbk-success1-css', $inline_css);
 
     $set = wbk_success1_get_settings();
 
-    // Inline CSS variables + grid tuning (safe)
-    $inline_css = sprintf(
-        ':root{--deep-blue:%1$s;--accent-blue:%2$s;--success-green:%3$s;--light-gray:%4$s;}
-        .wbk-success-grid{grid-template-columns:repeat(%5$d, minmax(%6$dpx, 1fr));}',
-        esc_attr($set['deep_blue']),
-        esc_attr($set['accent_blue']),
-        esc_attr($set['success_green']),
-        esc_attr($set['light_gray']),
-        (int) $set['max_columns'],
-        (int) $set['min_card_width']
-    );
+// Inline CSS variables + grid tuning (safe + scoped)
+$inline_css = sprintf(
+    '.wbk-success-section{--deep-blue:%1$s;--accent-blue:%2$s;--success-green:%3$s;--light-gray:%4$s;}
+     .wbk-success-section .wbk-success-grid{grid-template-columns:repeat(%5$d, minmax(%6$dpx, 1fr));}',
+    esc_attr($set['deep_blue']),
+    esc_attr($set['accent_blue']),
+    esc_attr($set['success_green']),
+    esc_attr($set['light_gray']),
+    (int) $set['max_columns'],
+    (int) $set['min_card_width']
+);
+
 
     $args = [
         'post_type'      => 'wbk_success',
@@ -284,8 +287,6 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
 
     ob_start();
 
-    // Print inline style (not user-controlled raw; sanitized/clamped above)
-    echo '<style>' . $inline_css . '</style>';
     ?>
     <section class="wbk-success-section">
 
