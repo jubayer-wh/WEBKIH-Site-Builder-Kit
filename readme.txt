@@ -1,5 +1,5 @@
 === WEBKIH Site Builder Kit ===
-Contributors: jubayer1, webkih
+Contributors: jubayer1
 Tags: website builder, shortcodes, slider, team, maps, travel packages, agency
 Requires at least: 6.0
 Tested up to: 6.6
