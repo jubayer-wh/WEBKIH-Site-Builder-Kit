@@ -1,4 +1,4 @@
-# Carousel Slider
+# Carousel Hero Slider
 
 A lightweight, SEO-friendly WordPress plugin that provides one focused module: **`wbk_hero_slider`**.
 
@@ -15,7 +15,7 @@ A lightweight, SEO-friendly WordPress plugin that provides one focused module: *
 - Responsive image rotation block
 
 ## Files included
-- `webkih-site-builder-kit.php`
+- `carousel-hero-slider.php`
 - `includes/wbk-hero-slider.php`
 - `admin/settings-page.php`
 - `assets/css/wbk-hero-slider.css`

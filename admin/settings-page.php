@@ -8,10 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function cs_register_admin_menu() {
     add_menu_page(
-        __( 'Carousel Slider', 'carousel-slider' ),
-        __( 'Carousel Slider', 'carousel-slider' ),
+        __( 'Carousel Hero Slider', 'carousel-hero-slider' ),
+        __( 'Carousel Hero Slider', 'carousel-hero-slider' ),
         'manage_options',
-        'carousel-slider',
+        'carousel-hero-slider',
         'cs_render_settings_page',
         'dashicons-images-alt2',
         25
@@ -35,17 +35,17 @@ function cs_register_settings() {
 
     add_settings_section(
         'cs_wbk_hero_slider_main',
-        __( 'Hero Slider Settings', 'carousel-slider' ),
+        __( 'Hero Slider Settings', 'carousel-hero-slider' ),
         '__return_false',
-        'carousel-slider'
+        'carousel-hero-slider'
     );
 
     $fields = [
-        'img1'   => __( 'Image 1 URL', 'carousel-slider' ),
-        'img2'   => __( 'Image 2 URL', 'carousel-slider' ),
-        'img3'   => __( 'Image 3 URL', 'carousel-slider' ),
-        'height' => __( 'Slider Height (px)', 'carousel-slider' ),
-        'speed'  => __( 'Auto Slide Speed (ms)', 'carousel-slider' ),
+        'img1'   => __( 'Image 1 URL', 'carousel-hero-slider' ),
+        'img2'   => __( 'Image 2 URL', 'carousel-hero-slider' ),
+        'img3'   => __( 'Image 3 URL', 'carousel-hero-slider' ),
+        'height' => __( 'Slider Height (px)', 'carousel-hero-slider' ),
+        'speed'  => __( 'Auto Slide Speed (ms)', 'carousel-hero-slider' ),
     ];
 
     foreach ( $fields as $key => $label ) {
@@ -53,7 +53,7 @@ function cs_register_settings() {
             'cs_' . $key,
             $label,
             'cs_render_field',
-            'carousel-slider',
+            'carousel-hero-slider',
             'cs_wbk_hero_slider_main',
             [
                 'key' => $key,
@@ -113,22 +113,22 @@ function cs_render_settings_page() {
     wp_enqueue_style( 'cs-admin-css', CS_URL . 'assets/css/admin.css', [], CS_VER );
     ?>
     <div class="wrap cs-admin-wrap">
-        <h1><?php esc_html_e( 'Carousel Slider', 'carousel-slider' ); ?></h1>
-        <p><?php esc_html_e( 'Build responsive hero carousel sliders for landing pages, headers, and showcase sections.', 'carousel-slider' ); ?></p>
+        <h1><?php esc_html_e( 'Carousel Hero Slider', 'carousel-hero-slider' ); ?></h1>
+        <p><?php esc_html_e( 'Build responsive hero carousel sliders for landing pages, headers, and showcase sections.', 'carousel-hero-slider' ); ?></p>
 
         <form method="post" action="options.php">
             <?php
             settings_fields( 'cs_wbk_hero_slider_group' );
-            do_settings_sections( 'carousel-slider' );
+            do_settings_sections( 'carousel-hero-slider' );
             submit_button();
             ?>
         </form>
 
         <hr />
 
-        <h2><?php esc_html_e( 'Shortcode', 'carousel-slider' ); ?></h2>
+        <h2><?php esc_html_e( 'Shortcode', 'carousel-hero-slider' ); ?></h2>
         <p><code>[wbk_hero_slider]</code></p>
-        <p><?php esc_html_e( 'Optional overrides:', 'carousel-slider' ); ?> <code>[wbk_hero_slider img1="..." img2="..." img3="..." height="360" speed="3500"]</code></p>
+        <p><?php esc_html_e( 'Optional overrides:', 'carousel-hero-slider' ); ?> <code>[wbk_hero_slider img1="..." img2="..." img3="..." height="360" speed="3500"]</code></p>
     </div>
     <?php
 }
