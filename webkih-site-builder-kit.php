@@ -5,7 +5,7 @@
  * Description: GH8-FWG1.0.0 - Modular website sections (Hero, Slider, Team, Packages, Contact, Loader) with shortcodes + admin gallery.
  * Version: 1.0.0
  * Author: Jubayer Hossain
- * Author URI: https://webkih.com
+ * Author URI: https://www.webkih.com/about/
  * License: GPLv2 or later
  * Text Domain: webkih-site-builder-kit
  */

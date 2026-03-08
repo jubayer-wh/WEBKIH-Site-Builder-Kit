@@ -6,7 +6,7 @@ WEBKIH Site Builder Kit is a modular WordPress plugin that adds reusable fronten
 
 - **Plugin URI:** https://github.com/jubayer-wh/WEBKIH-Site-Builder-Kit
 - **Author:** Jubayer Hossain
-- **Author URI:** https://webkih.com
+- **Author URI:** https://www.webkih.com/about/
 - **Version:** 1.0.0
 - **License:** GPLv2 or later
 
