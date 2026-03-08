@@ -8,7 +8,7 @@ $defaults = [
     'email'       => 'jubayer@webkih.com',
     'hours'       => 'Sat - Thu | 9 AM - 8 PM',
     'button_text' => 'Get Directions',
-    'button_url'  => 'https://maps.app.goo.gl/gNeAjCxHXWLsrKwE6',
+    'button_url'  => 'https://www.google.com/maps/place/WEBKIH/@24.7944884,90.8598375,17z',
     'iframe_src'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.8290194528977!2d90.85983747536879!3d24.794488377972446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3756e70c3b3900b9%3A0x7498eb0a8b396f7c!2sWEBKIH!5e1!3m2!1sen!2sbd!4v1767615114491!5m2!1sen!2sbd'
 ];
 
@@ -25,8 +25,7 @@ if ( isset($_POST['wbk_save_map1']) ) {
     }
 
     // ---- SMART iframe SRC HANDLING ----
-    $iframe_input = $_POST['iframe_src'] ?? '';
-    $iframe_input = wp_unslash($iframe_input);
+    $iframe_input = isset($_POST['iframe_src']) ? wp_kses_no_null( wp_unslash( (string) $_POST['iframe_src'] ) ) : '';
 
     // If full iframe pasted, extract src=""
     if ( preg_match('/src=["\']([^"\']+)["\']/', $iframe_input, $matches) ) {

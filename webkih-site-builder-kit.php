@@ -16,14 +16,6 @@ define('WBK_VER', '1.0.0');
 define('WBK_DIR', plugin_dir_path(__FILE__));
 define('WBK_URL', plugin_dir_url(__FILE__));
 
-add_action('plugins_loaded', function () {
-    load_plugin_textdomain(
-        'webkih-site-builder-kit',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages'
-    );
-});
-
 // Core: assets + admin menu
 require_once WBK_DIR . 'admin/core.php';
 
@@ -40,6 +32,7 @@ require_once WBK_DIR . 'includes/wbk-package1.php';
 // Frontend preview handler
 add_action('template_redirect', function () {
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview query var; no state change.
     if ( ! isset($_GET['wbk_preview']) ) {
         return;
     }
@@ -50,6 +43,7 @@ add_action('template_redirect', function () {
         exit;
     }
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview query var; no state change.
     $raw = sanitize_text_field( wp_unslash($_GET['wbk_preview']) );
 
     /**

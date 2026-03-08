@@ -19,7 +19,7 @@ function wbk_map1_get_defaults() {
         'email'       => 'jubayer@webkih.com',
         'hours'       => 'Sat - Thu | 9 AM - 8 PM',
         'button_text' => 'Get Directions',
-        'button_url'  => 'https://maps.app.goo.gl/gNeAjCxHXWLsrKwE6',
+        'button_url'  => 'https://www.google.com/maps/place/WEBKIH/@24.7944884,90.8598375,17z',
         'iframe_src'  => '',
     ];
 }

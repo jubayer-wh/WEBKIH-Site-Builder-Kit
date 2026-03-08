@@ -2,6 +2,7 @@
 if ( ! defined('ABSPATH') ) exit;
 if ( ! current_user_can('manage_options') ) return;
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin routing parameter.
 $module = isset($_GET['module']) ? sanitize_key( wp_unslash($_GET['module']) ) : 'success1';
 
 $modules = [

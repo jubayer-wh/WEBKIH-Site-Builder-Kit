@@ -264,6 +264,7 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
     $cat_slug = is_string($cat_slug) ? sanitize_title($cat_slug) : '';
 
     if ( $cat_slug !== '' ) {
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Taxonomy filtering is user-configurable shortcode behavior.
         $args['tax_query'] = [
             [
                 'taxonomy' => 'wbk_success_category',

@@ -1,13 +1,13 @@
 === WEBKIH Site Builder Kit ===
 Contributors: jubayer1
-Tags: website builder, shortcodes, slider, team, maps, travel packages, agency
+Tags: website builder, shortcodes, slider, team, maps
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.9
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WEBKIH Site Builder Kit helps agencies and service websites quickly assemble reusable website sections using dedicated shortcodes and module-specific admin screens.
+Modular WordPress sections with shortcodes for sliders, team, map, success stories, and packages managed from one admin hub.
 
 == Description ==
 WEBKIH Site Builder Kit is a modular plugin designed for service companies, education consultancies, travel brands, and agencies that need editable frontend sections without page-builder lock-in.
