@@ -1,6 +1,6 @@
 === WEBKIH Site Builder Kit ===
 Contributors: jubayer1
-Tags: website builder, shortcodes, slider, team, maps
+Tags: website builder, stories, slider, team, maps
 Requires at least: 6.0
 Tested up to: 6.9
 Stable tag: 1.0.0
