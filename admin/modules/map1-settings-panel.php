@@ -25,22 +25,8 @@ if ( isset($_POST['wbk_save_map1']) ) {
     }
 
     // ---- SMART iframe SRC HANDLING ----
-    $iframe_input = isset($_POST['iframe_src']) ? wp_unslash($_POST['iframe_src']) : '';
+    $iframe_input = isset($_POST['iframe_src']) ? sanitize_textarea_field( wp_unslash($_POST['iframe_src']) ) : '';
     $iframe_input = is_string($iframe_input) ? $iframe_input : '';
-    $iframe_input = wp_kses(
-        $iframe_input,
-        [
-            'iframe' => [
-                'src'            => true,
-                'width'          => true,
-                'height'         => true,
-                'style'          => true,
-                'allowfullscreen'=> true,
-                'loading'        => true,
-                'referrerpolicy' => true,
-            ],
-        ]
-    );
 
     // If full iframe pasted, extract src=""
     if ( preg_match('/src=["\']([^"\']+)["\']/', $iframe_input, $matches) ) {
