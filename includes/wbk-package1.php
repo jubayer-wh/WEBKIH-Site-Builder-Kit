@@ -149,7 +149,7 @@ add_action('save_post_wbk_package1', function ($post_id) {
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
     if ( ! current_user_can('edit_post', $post_id) ) return;
 
-    if ( ! isset($_POST['wbk_pkg1_nonce']) || ! wp_verify_nonce($_POST['wbk_pkg1_nonce'], 'wbk_pkg1_save_meta') ) {
+    if ( ! isset($_POST['wbk_pkg1_nonce']) || ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_pkg1_nonce']) ), 'wbk_pkg1_save_meta') ) {
         return;
     }
 

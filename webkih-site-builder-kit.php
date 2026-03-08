@@ -1,10 +1,11 @@
 <?php
 /**
  * Plugin Name: WEBKIH Site Builder Kit
+ * Plugin URI: https://github.com/jubayer-wh/WEBKIH-Site-Builder-Kit
  * Description: GH8-FWG1.0.0 - Modular website sections (Hero, Slider, Team, Packages, Contact, Loader) with shortcodes + admin gallery.
  * Version: 1.0.0
- * Author: WEBKIH
- * Author URI: https://webkih.com/about/
+ * Author: Jubayer Hossain
+ * Author URI: https://webkih.com
  * License: GPLv2 or later
  * Text Domain: webkih-site-builder-kit
  */
@@ -49,7 +50,7 @@ add_action('template_redirect', function () {
         exit;
     }
 
-    $raw = wp_unslash($_GET['wbk_preview']);
+    $raw = sanitize_text_field( wp_unslash($_GET['wbk_preview']) );
 
     /**
      * Security: whitelist ONLY your plugin shortcodes
@@ -66,10 +67,25 @@ add_action('template_redirect', function () {
         $raw = '[' . $raw . ']';
     }
 
-    // Strict allow: shortcode must start with [wbk_
-    if ( ! preg_match('/^\[wbk_[a-z0-9_]+(\s+[^\]]+)?\]$/i', $raw) ) {
+    if ( ! preg_match('/^\[([a-z0-9_]+)(\s+[^\]]+)?\]$/i', $raw, $matches) ) {
         status_header(400);
-        echo 'Invalid preview shortcode.';
+        echo esc_html__('Invalid preview shortcode.', 'webkih-site-builder-kit');
+        exit;
+    }
+
+    $allowed_shortcodes = [
+        'wbk_map1',
+        'wbk_slider1',
+        'wbk_slider2',
+        'wbk_team1',
+        'wbk_success1_3',
+        'wbk_success1_all',
+        'wbk_package1',
+    ];
+
+    if ( ! in_array( strtolower($matches[1]), $allowed_shortcodes, true ) ) {
+        status_header(400);
+        echo esc_html__('Invalid preview shortcode.', 'webkih-site-builder-kit');
         exit;
     }
 
@@ -98,7 +114,7 @@ add_action('template_redirect', function () {
         </style>
     </head>
     <body>
-        <?php echo do_shortcode( $raw ); ?>
+        <?php echo do_shortcode( $raw ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         <?php wp_footer(); ?>
     </body>
     </html>

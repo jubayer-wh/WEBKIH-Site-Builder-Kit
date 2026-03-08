@@ -121,7 +121,7 @@ add_action('save_post_wbk_slider1', function ($post_id) {
 
     if (
         ! isset($_POST['wbk_slider1_nonce']) ||
-        ! wp_verify_nonce($_POST['wbk_slider1_nonce'], 'wbk_slider1_save_meta')
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_slider1_nonce']) ), 'wbk_slider1_save_meta')
     ) return;
 
     update_post_meta($post_id, '_wbk_slider1_desc',
@@ -179,7 +179,7 @@ function wbk_slider1_shortcode() {
                     <div class="wbk-slide-overlay"></div>
 
                     <div class="wbk-slide-content">
-                        <h2><?php echo wp_kses_post( get_the_title() ); ?></h2>
+                        <h2><?php echo esc_html( get_the_title() ); ?></h2>
                         <p><?php echo wp_kses_post( $desc ); ?></p>
 
                         <?php if ( $btn_text ) : ?>

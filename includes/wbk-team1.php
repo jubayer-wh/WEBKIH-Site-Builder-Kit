@@ -88,7 +88,7 @@ add_action('save_post_wbk_team', function ($post_id) {
 
     if (
         ! isset($_POST['wbk_team_role_nonce']) ||
-        ! wp_verify_nonce($_POST['wbk_team_role_nonce'], 'wbk_team_role_save')
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_team_role_nonce']) ), 'wbk_team_role_save')
     ) {
         return;
     }
@@ -162,15 +162,23 @@ add_shortcode('wbk_team1', function ($atts) {
         'title' => 'Meet Our Expert Consultants',
         'limit' => 12,
         'order' => 'ASC',
-    ], $atts);
+    ], $atts, 'wbk_team1');
+
+    $allowed_order = ['ASC', 'DESC'];
+    $order = strtoupper( sanitize_key( (string) $atts['order'] ) );
+    if ( ! in_array($order, $allowed_order, true) ) {
+        $order = 'ASC';
+    }
+
+    $limit = max(1, min(100, absint($atts['limit'])));
 
     $q = new WP_Query([
         'post_type'      => 'wbk_team',
-        'posts_per_page' => (int) $atts['limit'],
+        'posts_per_page' => $limit,
 
         // ✅ Custom order: first by menu_order (manual), then title
-        'orderby'        => ['menu_order' => 'ASC', 'title' => $atts['order']],
-        'order'          => $atts['order'],
+        'orderby'        => ['menu_order' => 'ASC', 'title' => $order],
+        'order'          => $order,
     ]);
 
     ob_start(); ?>
@@ -190,7 +198,7 @@ add_shortcode('wbk_team1', function ($atts) {
 
                     <div class="wbk-team-card">
                         <div class="wbk-team-img" style="background-image:url('<?php echo esc_url($img); ?>')"></div>
-                        <h4 class="wbk-team-name"><?php the_title(); ?></h4>
+                        <h4 class="wbk-team-name"><?php echo esc_html( get_the_title() ); ?></h4>
                         <?php if ($role): ?>
                             <p class="wbk-team-role"><?php echo esc_html($role); ?></p>
                         <?php endif; ?>

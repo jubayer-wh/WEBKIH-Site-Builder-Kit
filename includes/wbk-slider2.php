@@ -95,7 +95,7 @@ add_action('save_post_wbk_slider2', function ($post_id) {
 
     if (
         ! isset($_POST['wbk_slider2_nonce']) ||
-        ! wp_verify_nonce($_POST['wbk_slider2_nonce'], 'wbk_slider2_save_meta')
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_slider2_nonce']) ), 'wbk_slider2_save_meta')
     ) {
         return;
     }
@@ -228,8 +228,8 @@ add_shortcode('wbk_slider2', function () {
             <?php endforeach; ?>
         </div>
 
-        <button class="wbk-slider2-nav wbk-slider2-prev" aria-label="Previous">❮</button>
-        <button class="wbk-slider2-nav wbk-slider2-next" aria-label="Next">❯</button>
+        <button type="button" class="wbk-slider2-nav wbk-slider2-prev" aria-label="Previous">❮</button>
+        <button type="button" class="wbk-slider2-nav wbk-slider2-next" aria-label="Next">❯</button>
 
         <div class="wbk-slider2-dots" aria-label="Slider dots">
             <?php foreach ( $slides as $i => $s ) : ?>

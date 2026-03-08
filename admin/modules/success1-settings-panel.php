@@ -17,7 +17,10 @@ $defaults = [
 ];
 
 if ( isset($_POST['wbk_success1_save']) ) {
-    check_admin_referer('wbk_success1_save_action', 'wbk_success1_nonce');
+    $nonce = isset($_POST['wbk_success1_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_success1_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'wbk_success1_save_action') ) {
+        wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
+    }
 
     $title        = sanitize_text_field( wp_unslash($_POST['title'] ?? '') );
     $caption      = sanitize_text_field( wp_unslash($_POST['caption'] ?? '') );
@@ -28,8 +31,8 @@ if ( isset($_POST['wbk_success1_save']) ) {
     $success_green = sanitize_hex_color( wp_unslash($_POST['success_green'] ?? '') );
     $light_gray    = sanitize_hex_color( wp_unslash($_POST['light_gray'] ?? '') );
 
-    $max_columns    = absint($_POST['max_columns'] ?? $defaults['max_columns']);
-    $min_card_width = absint($_POST['min_card_width'] ?? $defaults['min_card_width']);
+    $max_columns    = absint( wp_unslash($_POST['max_columns'] ?? $defaults['max_columns']) );
+    $min_card_width = absint( wp_unslash($_POST['min_card_width'] ?? $defaults['min_card_width']) );
 
     $max_columns = max(1, min(6, $max_columns));
     $min_card_width = max(220, min(600, $min_card_width));
@@ -47,7 +50,7 @@ if ( isset($_POST['wbk_success1_save']) ) {
     ];
 
     update_option($opt_key, $data, false);
-    echo '<div class="notice notice-success"><p>Success Stories settings saved.</p></div>';
+    echo '<div class="notice notice-success"><p>' . esc_html__('Success Stories settings saved.', 'webkih-site-builder-kit') . '</p></div>';
 }
 
 $settings = get_option($opt_key, []);

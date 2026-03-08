@@ -19,7 +19,10 @@ SAVE SETTINGS (SMART iframe HANDLER)
 --------------------------------------------------------------*/
 if ( isset($_POST['wbk_save_map1']) ) {
 
-    check_admin_referer('wbk_save_map1_action', 'wbk_map1_nonce');
+    $nonce = isset($_POST['wbk_map1_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_map1_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'wbk_save_map1_action') ) {
+        wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
+    }
 
     // ---- SMART iframe SRC HANDLING ----
     $iframe_input = $_POST['iframe_src'] ?? '';
@@ -31,17 +34,17 @@ if ( isset($_POST['wbk_save_map1']) ) {
     }
 
     $data = [
-        'title'       => sanitize_text_field($_POST['title'] ?? ''),
-        'address'     => sanitize_text_field($_POST['address'] ?? ''),
-        'email'       => sanitize_email($_POST['email'] ?? ''),
-        'hours'       => sanitize_text_field($_POST['hours'] ?? ''),
-        'button_text' => sanitize_text_field($_POST['button_text'] ?? ''),
-        'button_url'  => esc_url_raw($_POST['button_url'] ?? ''),
+        'title'       => sanitize_text_field( wp_unslash($_POST['title'] ?? '') ),
+        'address'     => sanitize_text_field( wp_unslash($_POST['address'] ?? '') ),
+        'email'       => sanitize_email( wp_unslash($_POST['email'] ?? '') ),
+        'hours'       => sanitize_text_field( wp_unslash($_POST['hours'] ?? '') ),
+        'button_text' => sanitize_text_field( wp_unslash($_POST['button_text'] ?? '') ),
+        'button_url'  => esc_url_raw( wp_unslash($_POST['button_url'] ?? '') ),
         'iframe_src'  => esc_url_raw($iframe_input),
     ];
 
     update_option($opt_key, array_merge($defaults, $data));
-    echo '<div class="notice notice-success"><p>Map settings saved.</p></div>';
+    echo '<div class="notice notice-success"><p>' . esc_html__('Map settings saved.', 'webkih-site-builder-kit') . '</p></div>';
 }
 
 $settings = get_option($opt_key, []);

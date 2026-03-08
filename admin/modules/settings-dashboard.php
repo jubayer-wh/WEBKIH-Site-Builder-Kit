@@ -11,7 +11,10 @@ $defaults = [
 ];
 
 if ( isset($_POST['wbk_save_settings']) ) {
-    check_admin_referer('wbk_save_settings_action', 'wbk_nonce');
+    $nonce = isset($_POST['wbk_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'wbk_save_settings_action') ) {
+        wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
+    }
 
     $brand_name_raw = sanitize_text_field( wp_unslash($_POST['brand_name'] ?? '') );
     $primary_raw    = sanitize_hex_color( wp_unslash($_POST['primary_color'] ?? '') );
@@ -25,7 +28,7 @@ if ( isset($_POST['wbk_save_settings']) ) {
 
     update_option($opt_key, $data, false);
 
-    echo '<div class="notice notice-success is-dismissible"><p>Settings saved.</p></div>';
+    echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Settings saved.', 'webkih-site-builder-kit') . '</p></div>';
 }
 
 $settings = get_option($opt_key, []);

@@ -154,7 +154,7 @@ add_action('save_post_wbk_success', function ($post_id) {
 
     if (
         ! isset($_POST['wbk_success_nonce']) ||
-        ! wp_verify_nonce($_POST['wbk_success_nonce'], 'wbk_success_save_metabox')
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_success_nonce']) ), 'wbk_success_save_metabox')
     ) {
         return;
     }
@@ -285,7 +285,9 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
     ob_start();
 
     // Print inline style (not user-controlled raw; sanitized/clamped above)
-    echo '<style>' . $inline_css . '</style>';
+    wp_register_style('wbk-success1-inline', false, [], WBK_VER);
+    wp_enqueue_style('wbk-success1-inline');
+    wp_add_inline_style('wbk-success1-inline', $inline_css);
     ?>
     <section class="wbk-success-section">
 

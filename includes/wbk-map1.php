@@ -102,7 +102,10 @@ function wbk_render_map1_admin_page() {
     // Save
     if ( isset($_POST['wbk_save_map1']) ) {
 
-        check_admin_referer('wbk_save_map1_action', 'wbk_map1_nonce');
+        $nonce = isset($_POST['wbk_map1_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_map1_nonce']) ) : '';
+        if ( ! wp_verify_nonce($nonce, 'wbk_save_map1_action') ) {
+            wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
+        }
 
         $data = [
             'title'       => sanitize_text_field( wp_unslash($_POST['title'] ?? '') ),
