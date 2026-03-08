@@ -1,29 +1,34 @@
 === Carousel Slider ===
-Contributors: webkih
-Tags: slider, carousel, shortcode
+Contributors: jubayer1
+Tags: carousel slider, hero slider, wordpress slider, image carousel, hero block slider, responsive slider, shortcode slider
 Requires at least: 6.0
 Tested up to: 6.6
 Stable tag: 1.0.0
 License: GPLv2 or later
 
-A lightweight carousel slider plugin with one focused module (slider1), shortcode support, and simple admin defaults.
+An SEO-friendly WordPress carousel and hero slider plugin with shortcode support to create fast, responsive hero block sliders.
 
 == Description ==
-Carousel Slider is a focused extraction of the slider1 module from the original WEBKIH Site Builder Kit.
+Carousel Slider helps you create modern **hero sliders** and **image carousel sections** in WordPress using a lightweight shortcode-driven workflow.
+
+Best for:
+- homepage hero sliders
+- landing page banner sliders
+- rotating image carousels
+- responsive hero block showcase sections
 
 Features:
-- Single-purpose slider module only.
-- Shortcode: [carousel_slider]
-- Backward-compatible shortcode alias: [wbk_slider1]
-- Admin settings for image URLs, height, and autoplay speed.
-- Clean CSS/JS assets loaded only when needed.
+- Single-purpose `wbk_hero_slider` module for better performance.
+- Shortcode: `[wbk_hero_slider]`
+- Admin settings for image URLs, slider height, and autoplay speed.
+- Clean, minimal CSS/JS loaded only when the slider is used.
 
 == Installation ==
 1. Upload plugin folder to /wp-content/plugins/
 2. Activate in Plugins
-3. Go to Carousel Slider in the dashboard to configure defaults
-4. Add [carousel_slider] to any page/post
+3. Go to Carousel Slider from the WordPress admin main menu
+4. Configure defaults and add `[wbk_hero_slider]` to any page/post
 
 == Changelog ==
 = 1.0.0 =
-Initial focused release for slider1 module.
+Focused standalone release for the `wbk_hero_slider` module.

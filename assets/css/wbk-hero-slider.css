@@ -1,4 +1,4 @@
-.cs-slider1 {
+.cs-wbk-hero-slider {
   max-width: 1100px;
   margin: 24px auto;
   border-radius: 16px;
@@ -6,15 +6,15 @@
   position: relative;
 }
 
-.cs-slide {
+.cs-wbk-hero-slide {
   display: none;
 }
 
-.cs-slide.is-active {
+.cs-wbk-hero-slide.is-active {
   display: block;
 }
 
-.cs-slide-bg {
+.cs-wbk-hero-slide-bg {
   width: 100%;
   background-size: cover;
   background-position: center;

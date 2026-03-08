@@ -4,21 +4,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register slider shortcode.
+ * Register hero slider shortcode.
  */
-function cs_register_slider_shortcode() {
-    add_shortcode( 'carousel_slider', 'cs_render_slider_shortcode' );
-    add_shortcode( 'wbk_slider1', 'cs_render_slider_shortcode' ); // Backward compatible alias.
+function cs_register_wbk_hero_slider_shortcode() {
+    add_shortcode( 'wbk_hero_slider', 'cs_render_wbk_hero_slider_shortcode' );
 }
-add_action( 'init', 'cs_register_slider_shortcode' );
+add_action( 'init', 'cs_register_wbk_hero_slider_shortcode' );
 
 /**
- * Render slider output.
+ * Render hero slider output.
  *
  * @param array<string, string> $atts Shortcode attributes.
  */
-function cs_render_slider_shortcode( $atts ) {
-    $defaults = cs_get_slider_settings();
+function cs_render_wbk_hero_slider_shortcode( $atts ) {
+    $defaults = cs_get_wbk_hero_slider_settings();
 
     $atts = shortcode_atts(
         [
@@ -29,7 +28,7 @@ function cs_render_slider_shortcode( $atts ) {
             'speed'  => (string) $defaults['speed'],
         ],
         $atts,
-        'carousel_slider'
+        'wbk_hero_slider'
     );
 
     $height = max( 200, absint( $atts['height'] ) );
@@ -48,17 +47,15 @@ function cs_render_slider_shortcode( $atts ) {
         return '<p><strong>Carousel Slider:</strong> Add at least one image URL in shortcode or plugin settings.</p>';
     }
 
-    wp_enqueue_style( 'cs-slider-css', CS_URL . 'assets/css/slider1.css', [], CS_VER );
-    wp_enqueue_script( 'cs-slider-js', CS_URL . 'assets/js/slider1.js', [], CS_VER, true );
-
-    $slider_id = 'cs-slider-' . wp_rand( 1000, 999999 );
+    wp_enqueue_style( 'cs-wbk-hero-slider-css', CS_URL . 'assets/css/wbk-hero-slider.css', [], CS_VER );
+    wp_enqueue_script( 'cs-wbk-hero-slider-js', CS_URL . 'assets/js/wbk-hero-slider.js', [], CS_VER, true );
 
     ob_start();
     ?>
-    <div class="cs-slider1" id="<?php echo esc_attr( $slider_id ); ?>" data-speed="<?php echo esc_attr( $speed ); ?>">
+    <div class="cs-wbk-hero-slider" data-speed="<?php echo esc_attr( $speed ); ?>">
         <?php foreach ( $images as $index => $image ) : ?>
-            <div class="cs-slide<?php echo 0 === $index ? ' is-active' : ''; ?>">
-                <div class="cs-slide-bg" style="height:<?php echo esc_attr( $height ); ?>px;background-image:url('<?php echo esc_url( $image ); ?>');"></div>
+            <div class="cs-wbk-hero-slide<?php echo 0 === $index ? ' is-active' : ''; ?>">
+                <div class="cs-wbk-hero-slide-bg" style="height:<?php echo esc_attr( $height ); ?>px;background-image:url('<?php echo esc_url( $image ); ?>');"></div>
             </div>
         <?php endforeach; ?>
     </div>
@@ -68,11 +65,11 @@ function cs_render_slider_shortcode( $atts ) {
 }
 
 /**
- * Read slider settings.
+ * Read hero slider settings.
  *
  * @return array<string, mixed>
  */
-function cs_get_slider_settings() {
+function cs_get_wbk_hero_slider_settings() {
     $defaults = [
         'img1'   => '',
         'img2'   => '',
@@ -81,7 +78,7 @@ function cs_get_slider_settings() {
         'speed'  => 3500,
     ];
 
-    $settings = get_option( 'cs_slider1_settings', [] );
+    $settings = get_option( 'cs_wbk_hero_slider_settings', [] );
 
     if ( ! is_array( $settings ) ) {
         return $defaults;

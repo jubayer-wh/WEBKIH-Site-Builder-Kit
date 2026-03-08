@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.cs-slider1').forEach(function (slider) {
-    var slides = slider.querySelectorAll('.cs-slide');
+  document.querySelectorAll('.cs-wbk-hero-slider').forEach(function (slider) {
+    var slides = slider.querySelectorAll('.cs-wbk-hero-slide');
     if (slides.length <= 1) {
       return;
     }

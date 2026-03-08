@@ -14,7 +14,7 @@ function cs_register_admin_menu() {
         'carousel-slider',
         'cs_render_settings_page',
         'dashicons-images-alt2',
-        58
+        25
     );
 }
 add_action( 'admin_menu', 'cs_register_admin_menu' );
@@ -24,18 +24,18 @@ add_action( 'admin_menu', 'cs_register_admin_menu' );
  */
 function cs_register_settings() {
     register_setting(
-        'cs_slider1_group',
-        'cs_slider1_settings',
+        'cs_wbk_hero_slider_group',
+        'cs_wbk_hero_slider_settings',
         [
             'type'              => 'array',
-            'sanitize_callback' => 'cs_sanitize_slider_settings',
-            'default'           => cs_get_slider_settings(),
+            'sanitize_callback' => 'cs_sanitize_wbk_hero_slider_settings',
+            'default'           => cs_get_wbk_hero_slider_settings(),
         ]
     );
 
     add_settings_section(
-        'cs_slider1_main',
-        __( 'Slider 1 Settings', 'carousel-slider' ),
+        'cs_wbk_hero_slider_main',
+        __( 'Hero Slider Settings', 'carousel-slider' ),
         '__return_false',
         'carousel-slider'
     );
@@ -54,7 +54,7 @@ function cs_register_settings() {
             $label,
             'cs_render_field',
             'carousel-slider',
-            'cs_slider1_main',
+            'cs_wbk_hero_slider_main',
             [
                 'key' => $key,
             ]
@@ -69,8 +69,8 @@ add_action( 'admin_init', 'cs_register_settings' );
  * @param array<string, mixed> $input Raw input.
  * @return array<string, mixed>
  */
-function cs_sanitize_slider_settings( $input ) {
-    $defaults = cs_get_slider_settings();
+function cs_sanitize_wbk_hero_slider_settings( $input ) {
+    $defaults = cs_get_wbk_hero_slider_settings();
 
     return [
         'img1'   => esc_url_raw( $input['img1'] ?? $defaults['img1'] ),
@@ -87,7 +87,7 @@ function cs_sanitize_slider_settings( $input ) {
  * @param array<string, string> $args Field args.
  */
 function cs_render_field( $args ) {
-    $settings = cs_get_slider_settings();
+    $settings = cs_get_wbk_hero_slider_settings();
     $key      = $args['key'];
     $value    = $settings[ $key ] ?? '';
     $type     = in_array( $key, [ 'height', 'speed' ], true ) ? 'number' : 'url';
@@ -95,7 +95,7 @@ function cs_render_field( $args ) {
     <input
         type="<?php echo esc_attr( $type ); ?>"
         class="regular-text"
-        name="cs_slider1_settings[<?php echo esc_attr( $key ); ?>]"
+        name="cs_wbk_hero_slider_settings[<?php echo esc_attr( $key ); ?>]"
         value="<?php echo esc_attr( (string) $value ); ?>"
         <?php echo 'number' === $type ? 'min="1" step="1"' : ''; ?>
     />
@@ -114,11 +114,11 @@ function cs_render_settings_page() {
     ?>
     <div class="wrap cs-admin-wrap">
         <h1><?php esc_html_e( 'Carousel Slider', 'carousel-slider' ); ?></h1>
-        <p><?php esc_html_e( 'Configure Slider 1 defaults, then place the shortcode on any page.', 'carousel-slider' ); ?></p>
+        <p><?php esc_html_e( 'Build responsive hero carousel sliders for landing pages, headers, and showcase sections.', 'carousel-slider' ); ?></p>
 
         <form method="post" action="options.php">
             <?php
-            settings_fields( 'cs_slider1_group' );
+            settings_fields( 'cs_wbk_hero_slider_group' );
             do_settings_sections( 'carousel-slider' );
             submit_button();
             ?>
@@ -127,8 +127,8 @@ function cs_render_settings_page() {
         <hr />
 
         <h2><?php esc_html_e( 'Shortcode', 'carousel-slider' ); ?></h2>
-        <p><code>[carousel_slider]</code></p>
-        <p><?php esc_html_e( 'Optional overrides:', 'carousel-slider' ); ?> <code>[carousel_slider img1="..." img2="..." img3="..." height="360" speed="3500"]</code></p>
+        <p><code>[wbk_hero_slider]</code></p>
+        <p><?php esc_html_e( 'Optional overrides:', 'carousel-slider' ); ?> <code>[wbk_hero_slider img1="..." img2="..." img3="..." height="360" speed="3500"]</code></p>
     </div>
     <?php
 }

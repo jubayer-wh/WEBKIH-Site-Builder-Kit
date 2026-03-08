@@ -1,21 +1,25 @@
 # Carousel Slider
 
-A lightweight WordPress plugin that provides only the **slider1** module as a standalone feature.
+A lightweight, SEO-friendly WordPress plugin that provides one focused module: **`wbk_hero_slider`**.
 
 ## Features
-- Focused on one module only (slider1)
+- Single module only: hero carousel slider
 - Shortcode support:
-  - `[carousel_slider]`
-  - `[wbk_slider1]` (backward-compatible alias)
+  - `[wbk_hero_slider]`
 - Admin settings for default images, height, and autoplay speed
-- Minimal file structure and scoped assets
+- Minimal file structure and scoped assets for faster loading
+
+## Use cases
+- Hero banner slider for homepage
+- Carousel slider for landing pages
+- Responsive image rotation block
 
 ## Files included
 - `webkih-site-builder-kit.php`
-- `includes/slider1.php`
+- `includes/wbk-hero-slider.php`
 - `admin/settings-page.php`
-- `assets/css/slider1.css`
-- `assets/js/slider1.js`
+- `assets/css/wbk-hero-slider.css`
+- `assets/js/wbk-hero-slider.js`
 - `assets/css/admin.css`
 - `readme.txt`
 - `uninstall.php`
