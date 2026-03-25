@@ -7,7 +7,7 @@
     /* Slim Hero Height */
     .wbk-package1-hero {
         height: 280px;
-        background: url('https://images.unsplash.com/photo-1528181304800-2f140819898f?q=80&w=1200') center/cover;
+        background: linear-gradient(135deg, #0b2a4a, #1f4d75) center/cover;
         position: relative;
         border-radius: 15px;
         overflow: hidden;

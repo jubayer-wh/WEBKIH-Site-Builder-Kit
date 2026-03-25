@@ -4,9 +4,8 @@ if ( ! defined('ABSPATH') ) exit;
 /**
  * Enqueue admin + frontend assets (WP-standard)
  */
-add_action('wp_enqueue_scripts', function () {
+function wbk_enqueue_frontend_assets() {
 
-    // Frontend base JS (optional, used by sliders etc.)
     wp_enqueue_script(
         'wbk-main-js',
         WBK_URL . 'assets/js/main.js',
@@ -15,19 +14,17 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 
-    // Optional: Map1 CSS (only if you want it globally).
-    // Better approach: enqueue inside shortcode/module, but keeping your behavior.
     wp_enqueue_style(
         'wbk-map1-css',
         WBK_URL . 'assets/css/map1.css',
         [],
         WBK_VER
     );
-});
+}
+add_action('wp_enqueue_scripts', 'wbk_enqueue_frontend_assets');
 
-add_action('admin_enqueue_scripts', function ($hook) {
+function wbk_enqueue_admin_assets( $hook ) {
 
-    // Admin assets only on WBK pages
     if ( strpos($hook, 'wbk') === false ) {
         return;
     }
@@ -46,13 +43,82 @@ add_action('admin_enqueue_scripts', function ($hook) {
         WBK_VER,
         true
     );
-});
+
+    if ( 'toplevel_page_wbk-dashboard' === $hook ) {
+        wbk_enqueue_settings_dashboard_assets();
+    }
+
+    if ( strpos($hook, 'wbk-settings') !== false ) {
+        wp_enqueue_style(
+            'wbk-settings-hub-css',
+            WBK_URL . 'assets/css/settings-hub.css',
+            ['wbk-admin-css'],
+            WBK_VER
+        );
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only module router in admin.
+        $module = isset($_GET['module']) ? sanitize_key( wp_unslash($_GET['module']) ) : 'success1';
+        if ( 'dashboard' === $module ) {
+            wbk_enqueue_settings_dashboard_assets();
+        }
+    }
+
+    if ( strpos($hook, 'wbk-documentation') !== false ) {
+        wp_enqueue_style(
+            'wbk-documentation-css',
+            WBK_URL . 'assets/css/documentation.css',
+            ['wbk-admin-css'],
+            WBK_VER
+        );
+        wp_enqueue_script(
+            'wbk-documentation-js',
+            WBK_URL . 'assets/js/documentation.js',
+            [],
+            WBK_VER,
+            true
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'wbk_enqueue_admin_assets');
+
+function wbk_enqueue_settings_dashboard_assets() {
+    $defaults = [
+        'primary_color' => '#0e304c',
+        'accent_color'  => '#38bdf8',
+    ];
+
+    $settings = get_option('wbk_settings', []);
+    $settings = array_merge($defaults, is_array($settings) ? $settings : []);
+
+    $primary = sanitize_hex_color($settings['primary_color']) ?: $defaults['primary_color'];
+    $accent  = sanitize_hex_color($settings['accent_color']) ?: $defaults['accent_color'];
+
+    wp_enqueue_style(
+        'wbk-settings-dashboard-css',
+        WBK_URL . 'assets/css/settings-dashboard.css',
+        ['wbk-admin-css'],
+        WBK_VER
+    );
+
+    wp_add_inline_style(
+        'wbk-settings-dashboard-css',
+        ':root{--wbk-primary:' . $primary . ';--wbk-accent:' . $accent . ';--wbk-border:#e5e7eb;--wbk-muted:#64748b;--wbk-card:#ffffff;--wbk-bg:#f8fafc;}'
+    );
+
+    wp_enqueue_script(
+        'wbk-settings-dashboard-js',
+        WBK_URL . 'assets/js/settings-dashboard.js',
+        [],
+        WBK_VER,
+        true
+    );
+}
 
 
 /**
  * Admin Menu
  */
-add_action('admin_menu', function () {
+function wbk_register_admin_menu() {
 
     add_menu_page(
         'WEBKIH Site Builder Kit',
@@ -63,11 +129,6 @@ add_action('admin_menu', function () {
         'dashicons-screenoptions',
         26
     );
-
-    /**
-     * ✅ Single Settings Hub (all module settings inside)
-     * URL: admin.php?page=wbk-settings
-     */
 
     add_submenu_page(
         'wbk-dashboard',
@@ -96,15 +157,8 @@ add_action('admin_menu', function () {
         'wbk-documentation',
         'wbk_render_docs'
     );
-
-    /**
-     * ❌ Removed old individual settings pages:
-     * - wbk-map1
-     * - wbk-success1-settings
-     * Because now everything goes into the Settings Hub.
-     */
-
-});
+}
+add_action('admin_menu', 'wbk_register_admin_menu');
 
 
 /**
@@ -115,7 +169,6 @@ function wbk_render_dashboard() {
 }
 
 function wbk_render_settings_hub() {
-    // This is your NEW single settings UI (cards/modules)
     require WBK_DIR . 'admin/settings-hub.php';
 }
 

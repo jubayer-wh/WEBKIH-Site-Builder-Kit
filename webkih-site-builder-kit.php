@@ -99,13 +99,11 @@ add_action('template_redirect', function () {
          * - This will output enqueued CSS/JS from your shortcode (wp_enqueue_style calls)
          * - Also outputs theme styles (fine for accurate preview)
          */
+        wp_register_style('wbk-preview-inline-style', false, [], WBK_VER);
+        wp_enqueue_style('wbk-preview-inline-style');
+        wp_add_inline_style('wbk-preview-inline-style', 'body{margin:0;padding:18px;background:#fff;}img{max-width:100%;height:auto;}');
         wp_head();
         ?>
-        <style>
-            /* Keep preview clean and responsive */
-            body{ margin:0; padding:18px; background:#fff; }
-            img{ max-width:100%; height:auto; }
-        </style>
     </head>
     <body>
         <?php echo do_shortcode( $raw ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
