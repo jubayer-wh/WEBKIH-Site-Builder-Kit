@@ -1,11 +1,11 @@
-    .wbk-package1-single {
+    .webksibu-package1-single {
         max-width: 1200px;
         margin: 40px auto;
         font-family: 'Poppins', sans-serif;
     }
 
     /* Slim Hero Height */
-    .wbk-package1-hero {
+    .webksibu-package1-hero {
         height: 280px;
         background: linear-gradient(135deg, #0b2a4a, #1f4d75) center/cover;
         position: relative;
@@ -14,7 +14,7 @@
         margin-bottom: 30px;
     }
 
-    .wbk-package1-hero-overlay {
+    .webksibu-package1-hero-overlay {
         background: rgba(0, 46, 99, 0.7); /* Faithway Blue Overlay */
         height: 100%;
         display: flex;
@@ -23,20 +23,20 @@
         text-align: center;
     }
 
-    .wbk-package1-hero-overlay h1 {
+    .webksibu-package1-hero-overlay h1 {
         color: #ffffff !important; /* Force visibility */
         font-size: 2.5rem;
         font-weight: 800;
         text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     }
 
-    .wbk-package1-container {
+    .webksibu-package1-container {
         display: flex;
         gap: 30px;
     }
 
     /* 2/3 Content Layout */
-    .wbk-package1-main {
+    .webksibu-package1-main {
         flex: 2;
         background: #fff;
         padding: 30px;
@@ -46,11 +46,11 @@
     }
 
     /* 1/3 Sidebar Layout */
-    .wbk-package1-sidebar {
+    .webksibu-package1-sidebar {
         flex: 1;
     }
 
-    .wbk-package1-widget {
+    .webksibu-package1-widget {
         background: #002e63;
         color: #fff;
         padding: 25px;
@@ -59,7 +59,7 @@
         top: 20px;
     }
 
-    .wbk-package1-widget h4 {
+    .webksibu-package1-widget h4 {
         color: #fff;
         margin-top: 0;
         font-size: 1.2rem;
@@ -67,13 +67,13 @@
         padding-bottom: 10px;
     }
 
-    .wbk-p-amt {
+    .webksibu-p-amt {
         font-size: 22px;
         color: #e67e22; /* Faithway Orange */
         font-weight: 800;
     }
 
-    .wbk-p-btn {
+    .webksibu-p-btn {
         display: block;
         background: #e67e22;
         color: #fff !important;
@@ -86,10 +86,10 @@
         transition: 0.3s;
     }
 
-    .wbk-p-btn:hover { background: #d35400; }
+    .webksibu-p-btn:hover { background: #d35400; }
 
     @media (max-width: 768px) {
-        .wbk-package1-container { flex-direction: column; }
-        .wbk-package1-hero { height: 220px; }
-        .wbk-package1-hero-overlay h1 { font-size: 1.8rem; }
+        .webksibu-package1-container { flex-direction: column; }
+        .webksibu-package1-hero { height: 220px; }
+        .webksibu-package1-hero-overlay h1 { font-size: 1.8rem; }
     }

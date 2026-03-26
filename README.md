@@ -21,13 +21,13 @@ WEBKIH Site Builder Kit is a modular WordPress plugin that adds reusable fronten
 
 ## Available Shortcodes
 
-- `[wbk_slider1]`
-- `[wbk_slider2]`
-- `[wbk_team1]`
-- `[wbk_map1]`
-- `[wbk_success1_3]`
-- `[wbk_success1_all]`
-- `[wbk_package1]`
+- `[webksibu_slider1]`
+- `[webksibu_slider2]`
+- `[webksibu_team1]`
+- `[webksibu_map1]`
+- `[webksibu_success1_3]`
+- `[webksibu_success1_all]`
+- `[webksibu_package1]`
 
 ## Installation
 

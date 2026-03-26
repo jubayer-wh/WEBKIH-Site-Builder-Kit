@@ -1,5 +1,5 @@
 (function(){
-    const cards = document.querySelectorAll('.wbk-sc-card');
+    const cards = document.querySelectorAll('.webksibu-sc-card');
     const frame = document.getElementById('wbkPreviewFrame');
     const toast = document.getElementById('wbkToast');
 

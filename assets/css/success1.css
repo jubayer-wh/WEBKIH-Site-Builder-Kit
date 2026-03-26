@@ -5,31 +5,31 @@
         --light-gray: #f4f7f9;
     }
 
-    .wbk-success-section {
+    .webksibu-success-section {
         max-width: 1200px;
         margin: 60px auto;
         padding: 0 20px;
         font-family: 'Poppins', sans-serif;
     }
 
-    .wbk-section-title {
+    .webksibu-section-title {
         text-align: center;
         margin-bottom: 50px;
     }
 
-    .wbk-section-title h2 {
+    .webksibu-section-title h2 {
         color: var(--deep-blue);
         font-size: 2.5rem;
         font-weight: 700;
     }
 
-    .wbk-success-grid {
+    .webksibu-success-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 30px;
     }
 
-    .wbk-success-card {
+    .webksibu-success-card {
         background: white;
         border-radius: 20px;
         overflow: hidden;
@@ -39,19 +39,19 @@
         flex-direction: column;
     }
 
-    .wbk-success-image-wrap {
+    .webksibu-success-image-wrap {
         position: relative;
         height: 250px;
         overflow: hidden;
     }
 
-    .wbk-success-image-wrap img {
+    .webksibu-success-image-wrap img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    .wbk-visa-badge {
+    .webksibu-visa-badge {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -64,17 +64,17 @@
         text-transform: uppercase;
     }
 
-    .wbk-success-content {
+    .webksibu-success-content {
         padding: 25px;
     }
 
-    .wbk-success-content h3 {
+    .webksibu-success-content h3 {
         color: var(--deep-blue);
         margin-bottom: 5px;
         font-size: 1.2rem;
     }
 
-    .wbk-destination-tag {
+    .webksibu-destination-tag {
         color: var(--accent-blue);
         font-weight: 600;
         font-size: 14px;
@@ -82,7 +82,7 @@
         margin-bottom: 15px;
     }
 
-    .wbk-success-quote {
+    .webksibu-success-quote {
         font-style: italic;
         color: #666;
         font-size: 0.95rem;
@@ -90,7 +90,7 @@
         position: relative;
     }
 
-    .wbk-success-quote::before {
+    .webksibu-success-quote::before {
         content: '"';
         font-size: 40px;
         color: #ddd;
@@ -100,7 +100,7 @@
         z-index: -1;
     }
 
-    .wbk-success-footer {
+    .webksibu-success-footer {
         padding: 20px 25px;
         background: #fafafa;
         border-top: 1px solid #eee;
@@ -111,6 +111,6 @@
     }
 
     @media (max-width: 600px) {
-        .wbk-success-grid { grid-template-columns: 1fr; }
-        .wbk-section-title h2 { font-size: 1.8rem; }
+        .webksibu-success-grid { grid-template-columns: 1fr; }
+        .webksibu-section-title h2 { font-size: 1.8rem; }
     }

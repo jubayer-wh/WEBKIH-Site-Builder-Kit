@@ -12,13 +12,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  document.querySelectorAll('[data-wbk-slider2="1"]').forEach((slider) => {
+  document.querySelectorAll('[data-webksibu-slider2="1"]').forEach((slider) => {
 
-    const viewport = slider.querySelector('.wbk-slider2-viewport');
-    const slides   = Array.from(slider.querySelectorAll('.wbk-slider2-slide'));
-    const dots     = Array.from(slider.querySelectorAll('.wbk-slider2-dot'));
-    const nextBtn  = slider.querySelector('.wbk-slider2-next');
-    const prevBtn  = slider.querySelector('.wbk-slider2-prev');
+    const viewport = slider.querySelector('.webksibu-slider2-viewport');
+    const slides   = Array.from(slider.querySelectorAll('.webksibu-slider2-slide'));
+    const dots     = Array.from(slider.querySelectorAll('.webksibu-slider2-dot'));
+    const nextBtn  = slider.querySelector('.webksibu-slider2-next');
+    const prevBtn  = slider.querySelector('.webksibu-slider2-prev');
 
     if (!viewport || slides.length === 0) return;
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animateOverlay = (i, direction = 'next') => {
       // Animate only the overlay content; keeps slider super smooth.
       slides.forEach((s, si) => {
-        const content = s.querySelector('.wbk-slider2-slide-content');
+        const content = s.querySelector('.webksibu-slider2-slide-content');
         if (!content) return;
 
         const isActive = si === i;

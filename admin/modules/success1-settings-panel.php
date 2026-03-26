@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH') ) exit;
 if ( ! current_user_can('manage_options') ) return;
 
-$opt_key = 'wbk_success1_settings';
+$opt_key = 'webksibu_success1_settings';
 
 $defaults = [
     'title'        => 'Our Recent Success Stories',
@@ -16,9 +16,9 @@ $defaults = [
     'min_card_width' => 350,
 ];
 
-if ( isset($_POST['wbk_success1_save']) ) {
-    $nonce = isset($_POST['wbk_success1_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_success1_nonce']) ) : '';
-    if ( ! wp_verify_nonce($nonce, 'wbk_success1_save_action') ) {
+if ( isset($_POST['webksibu_success1_save']) ) {
+    $nonce = isset($_POST['webksibu_success1_nonce']) ? sanitize_text_field( wp_unslash($_POST['webksibu_success1_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'webksibu_success1_save_action') ) {
         wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
     }
 
@@ -58,10 +58,10 @@ $settings = array_merge($defaults, is_array($settings) ? $settings : []);
 ?>
 
 <h2 style="margin-top:0;">Success Stories (Style 1)</h2>
-<p class="description">Affects: <code>[wbk_success1_3]</code> and <code>[wbk_success1_all]</code></p>
+<p class="description">Affects: <code>[webksibu_success1_3]</code> and <code>[webksibu_success1_all]</code></p>
 
 <form method="post">
-    <?php wp_nonce_field('wbk_success1_save_action', 'wbk_success1_nonce'); ?>
+    <?php wp_nonce_field('webksibu_success1_save_action', 'webksibu_success1_nonce'); ?>
 
     <h3>Heading</h3>
     <table class="form-table">
@@ -109,6 +109,6 @@ $settings = array_merge($defaults, is_array($settings) ? $settings : []);
     </table>
 
     <p>
-        <button class="button button-primary" type="submit" name="wbk_success1_save">Save</button>
+        <button class="button button-primary" type="submit" name="webksibu_success1_save">Save</button>
     </p>
 </form>

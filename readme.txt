@@ -14,12 +14,12 @@ WEBKIH Site Builder Kit is a modular plugin designed for service companies, educ
 
 This plugin includes custom modules for:
 
-* **Slider 1** (`[wbk_slider1]`) – Hero style slider driven by a custom post type.
-* **Slider 2** (`[wbk_slider2]`) – Lightweight content/image slider with navigation dots.
-* **Team Section** (`[wbk_team1]`) – Team member cards with role/designation support.
-* **Map Section** (`[wbk_map1]`) – Contact/location section with map embed URL and CTA button.
-* **Success Stories** (`[wbk_success1_3]`, `[wbk_success1_all]`) – Case/story cards with category filtering support.
-* **Packages** (`[wbk_package1]`) – Package grid and dedicated single-package template.
+* **Slider 1** (`[webksibu_slider1]`) – Hero style slider driven by a custom post type.
+* **Slider 2** (`[webksibu_slider2]`) – Lightweight content/image slider with navigation dots.
+* **Team Section** (`[webksibu_team1]`) – Team member cards with role/designation support.
+* **Map Section** (`[webksibu_map1]`) – Contact/location section with map embed URL and CTA button.
+* **Success Stories** (`[webksibu_success1_3]`, `[webksibu_success1_all]`) – Case/story cards with category filtering support.
+* **Packages** (`[webksibu_package1]`) – Package grid and dedicated single-package template.
 
 ### Why use this plugin?
 
@@ -43,19 +43,19 @@ You can use them in posts, pages, widgets, and most page builders that support s
 
 = How do I filter success stories by category? =
 Use the `cat` attribute with category slug, for example:
-`[wbk_success1_3 cat="student-visa"]`
+`[webksibu_success1_3 cat="student-visa"]`
 
 = Does the package module include a single template? =
-Yes. The plugin provides a dedicated single template for `wbk_package1` posts.
+Yes. The plugin provides a dedicated single template for `webksibu_package1` posts.
 
 == Shortcodes ==
-* `[wbk_slider1]`
-* `[wbk_slider2]`
-* `[wbk_team1]`
-* `[wbk_map1]`
-* `[wbk_success1_3]`
-* `[wbk_success1_all]`
-* `[wbk_package1]`
+* `[webksibu_slider1]`
+* `[webksibu_slider2]`
+* `[webksibu_team1]`
+* `[webksibu_map1]`
+* `[webksibu_success1_3]`
+* `[webksibu_success1_all]`
+* `[webksibu_package1]`
 
 == Changelog ==
 = 1.0.0 =

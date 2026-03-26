@@ -9,17 +9,17 @@ $modules = [
     'dashboard' => [
         'title' => 'Primary Dashboard',
         'desc'  => 'brand, colors',
-        'file'  => WBK_DIR . 'admin/modules/settings-dashboard.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/settings-dashboard.php',
     ],    
     'success1' => [
         'title' => 'Success Stories (Style 1)',
         'desc'  => 'Title, caption, hide, colors, columns',
-        'file'  => WBK_DIR . 'admin/modules/success1-settings-panel.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/success1-settings-panel.php',
     ],
     'map1' => [
         'title' => 'Map (Style 1)',
         'desc'  => 'Title, address, button, iframe',
-        'file'  => WBK_DIR . 'admin/modules/map1-settings-panel.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/map1-settings-panel.php',
     ],
 
     // Add more modules later:
@@ -35,23 +35,23 @@ if ( ! isset($modules[$module]) ) {
 <div class="wrap">
     <h1>WEBKIH Kit Settings</h1>
 
-    <div class="wbk-hub">
-        <div class="wbk-hub-left">
-            <h2 class="wbk-modules-heading">Modules</h2>
+    <div class="webksibu-hub">
+        <div class="webksibu-hub-left">
+            <h2 class="webksibu-modules-heading">Modules</h2>
 
             <?php foreach ($modules as $key => $m): ?>
                 <?php
-                    $url = add_query_arg(['page' => 'wbk-settings', 'module' => $key], admin_url('admin.php'));
+                    $url = add_query_arg(['page' => 'webksibu-settings', 'module' => $key], admin_url('admin.php'));
                     $active = ($key === $module) ? 'is-active' : '';
                 ?>
-                <a class="wbk-mod-card <?php echo esc_attr($active); ?>" href="<?php echo esc_url($url); ?>">
-                    <p class="wbk-mod-title"><?php echo esc_html($m['title']); ?></p>
-                    <p class="wbk-mod-desc"><?php echo esc_html($m['desc']); ?></p>
+                <a class="webksibu-mod-card <?php echo esc_attr($active); ?>" href="<?php echo esc_url($url); ?>">
+                    <p class="webksibu-mod-title"><?php echo esc_html($m['title']); ?></p>
+                    <p class="webksibu-mod-desc"><?php echo esc_html($m['desc']); ?></p>
                 </a>
             <?php endforeach; ?>
         </div>
 
-        <div class="wbk-hub-right">
+        <div class="webksibu-hub-right">
             <?php
                 $panel_file = $modules[$module]['file'];
                 if ( file_exists($panel_file) ) {

@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH') ) exit;
 if ( ! current_user_can('manage_options') ) return;
 
-$opt_key = 'wbk_settings';
+$opt_key = 'webksibu_settings';
 
 $defaults = [
     'brand_name'    => 'WEBKIH',
@@ -10,9 +10,9 @@ $defaults = [
     'accent_color'  => '#38bdf8',
 ];
 
-if ( isset($_POST['wbk_save_settings']) ) {
-    $nonce = isset($_POST['wbk_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_nonce']) ) : '';
-    if ( ! wp_verify_nonce($nonce, 'wbk_save_settings_action') ) {
+if ( isset($_POST['webksibu_save_settings']) ) {
+    $nonce = isset($_POST['webksibu_nonce']) ? sanitize_text_field( wp_unslash($_POST['webksibu_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'webksibu_save_settings_action') ) {
         wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
     }
 
@@ -37,61 +37,61 @@ $settings = array_merge($defaults, is_array($settings) ? $settings : []);
 ?>
 
 
-<div class="wrap wbk-settings-wrap">
-    <div class="wbk-settings-hero">
+<div class="wrap webksibu-settings-wrap">
+    <div class="webksibu-settings-hero">
         <h1><?php echo esc_html($settings['brand_name']); ?> Kit Settings</h1>
         <p>Set your brand name and colors. These can be reused across modules for a consistent look.</p>
     </div>
 
-    <div class="wbk-card">
+    <div class="webksibu-card">
         <form method="post" novalidate>
-            <?php wp_nonce_field('wbk_save_settings_action', 'wbk_nonce'); ?>
+            <?php wp_nonce_field('webksibu_save_settings_action', 'webksibu_nonce'); ?>
 
-            <div class="wbk-grid">
-                <div class="wbk-field">
+            <div class="webksibu-grid">
+                <div class="webksibu-field">
                     <label for="brand_name">Brand Name</label>
                     <input type="text" id="brand_name" name="brand_name"
                            value="<?php echo esc_attr($settings['brand_name']); ?>"
                            placeholder="e.g. WEBKIH">
-                    <div class="wbk-help">Used on admin pages and future templates.</div>
+                    <div class="webksibu-help">Used on admin pages and future templates.</div>
                 </div>
 
-                <div class="wbk-field">
+                <div class="webksibu-field">
                     <label>Primary Color</label>
-                    <div class="wbk-row">
-                        <div class="wbk-color-preview" id="wbkPrimaryPreview" data-color="<?php echo esc_attr($settings['primary_color']); ?>" style="background: <?php echo esc_attr($settings['primary_color']); ?>;"></div>
+                    <div class="webksibu-row">
+                        <div class="webksibu-color-preview" id="wbkPrimaryPreview" data-color="<?php echo esc_attr($settings['primary_color']); ?>" style="background: <?php echo esc_attr($settings['primary_color']); ?>;"></div>
                         <input type="text" id="primary_color" name="primary_color"
                                value="<?php echo esc_attr($settings['primary_color']); ?>"
                                placeholder="#0e304c">
                     </div>
-                    <div class="wbk-help">Main brand color. Use hex like <code>#0e304c</code>.</div>
+                    <div class="webksibu-help">Main brand color. Use hex like <code>#0e304c</code>.</div>
                 </div>
 
-                <div class="wbk-field">
+                <div class="webksibu-field">
                     <label>Accent Color</label>
-                    <div class="wbk-row">
-                        <div class="wbk-color-preview" id="wbkAccentPreview" data-color="<?php echo esc_attr($settings['accent_color']); ?>" style="background: <?php echo esc_attr($settings['accent_color']); ?>;"></div>
+                    <div class="webksibu-row">
+                        <div class="webksibu-color-preview" id="wbkAccentPreview" data-color="<?php echo esc_attr($settings['accent_color']); ?>" style="background: <?php echo esc_attr($settings['accent_color']); ?>;"></div>
                         <input type="text" id="accent_color" name="accent_color"
                                value="<?php echo esc_attr($settings['accent_color']); ?>"
                                placeholder="#38bdf8">
                     </div>
-                    <div class="wbk-help">Highlights, buttons, neon accents. Hex only.</div>
+                    <div class="webksibu-help">Highlights, buttons, neon accents. Hex only.</div>
                 </div>
 
-                <div class="wbk-field">
+                <div class="webksibu-field">
                     <label>Quick Presets</label>
-                    <div class="wbk-row wbk-row-wrap">
-                        <button type="button" class="wbk-btn wbk-btn-ghost" data-preset="classic">WEBKIH Classic</button>
-                        <button type="button" class="wbk-btn wbk-btn-ghost" data-preset="neon">Neon Night</button>
-                        <button type="button" class="wbk-btn wbk-btn-ghost" data-preset="calm">Calm Blue</button>
+                    <div class="webksibu-row webksibu-row-wrap">
+                        <button type="button" class="webksibu-btn webksibu-btn-ghost" data-preset="classic">WEBKIH Classic</button>
+                        <button type="button" class="webksibu-btn webksibu-btn-ghost" data-preset="neon">Neon Night</button>
+                        <button type="button" class="webksibu-btn webksibu-btn-ghost" data-preset="calm">Calm Blue</button>
                     </div>
-                    <div class="wbk-help">Optional: quickly switch brand palettes before saving.</div>
+                    <div class="webksibu-help">Optional: quickly switch brand palettes before saving.</div>
                 </div>
             </div>
 
-            <div class="wbk-actions">
-                <button type="button" class="wbk-btn wbk-btn-ghost" id="wbkResetDefaults">Reset to Defaults</button>
-                <button type="submit" name="wbk_save_settings" class="wbk-btn wbk-btn-primary">Save Settings</button>
+            <div class="webksibu-actions">
+                <button type="button" class="webksibu-btn webksibu-btn-ghost" id="wbkResetDefaults">Reset to Defaults</button>
+                <button type="submit" name="webksibu_save_settings" class="webksibu-btn webksibu-btn-primary">Save Settings</button>
             </div>
         </form>
     </div>

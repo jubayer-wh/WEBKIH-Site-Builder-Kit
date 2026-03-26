@@ -3,19 +3,19 @@
         --webkih-white: #ffffff;
     }
 
-    .wbk-map-section {
+    .webksibu-map-section {
         background: var(--webkih-white);
         padding: 40px 0;
         font-family: 'Inter', sans-serif;
     }
 
-    .wbk-map-container {
+    .webksibu-map-container {
         max-width: 1140px;
         margin: 0 auto;
         padding: 0 15px;
     }
 
-    .wbk-map-card {
+    .webksibu-map-card {
         display: flex;
         flex-wrap: wrap;
         background: var(--webkih-navy);
@@ -25,23 +25,23 @@
     }
 
     /* Info Column */
-    .wbk-map-info {
+    .webksibu-map-info {
         flex: 1 1 350px;
         padding: 40px;
         color: var(--webkih-white);
     }
 
-    .wbk-map-info h2 {
+    .webksibu-map-info h2 {
         font-size: 1.8rem;
         margin: 0 0 15px 0;
         color: var(--webkih-white);
     }
 
-    .wbk-details {
+    .webksibu-details {
         margin-bottom: 25px;
     }
 
-    .wbk-row {
+    .webksibu-row {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -51,19 +51,19 @@
     }
 
     /* Map Column */
-    .wbk-map-iframe {
+    .webksibu-map-iframe {
         flex: 1 1 450px;
         min-height: 400px;
         line-height: 0;
     }
 
-    .wbk-map-iframe iframe {
+    .webksibu-map-iframe iframe {
         width: 100%;
         height: 100%;
         border: 0;
     }
 
-    .wbk-map-btn {
+    .webksibu-map-btn {
         display: inline-block;
         background: var(--webkih-white);
         color: var(--webkih-navy);
@@ -75,47 +75,47 @@
         transition: opacity 0.3s;
     }
 
-    .wbk-map-btn:hover {
+    .webksibu-map-btn:hover {
         opacity: 0.9;
         color: var(--webkih-navy);
     }
 
     /* MOBILE OPTIMIZATIONS */
     @media (max-width: 767px) {
-        .wbk-map-section {
+        .webksibu-map-section {
             padding: 15px 5px;
         }
         
-        .wbk-map-container {
+        .webksibu-map-container {
             padding: 0 10px;
         }
 
-        .wbk-map-card {
+        .webksibu-map-card {
             border-radius: 12px;
         }
 
-        .wbk-map-info {
+        .webksibu-map-info {
             padding: 20px;
             flex: 1 1 100%;
         }
 
-        .wbk-map-info h2 {
+        .webksibu-map-info h2 {
             font-size: 1.4rem;
             margin-bottom: 10px;
         }
 
-        .wbk-map-iframe {
+        .webksibu-map-iframe {
             min-height: 250px;
             flex: 1 1 100%;
         }
 
-        .wbk-map-btn {
+        .webksibu-map-btn {
             width: 100%;
             text-align: center;
             box-sizing: border-box;
         }
         
-        .wbk-row {
+        .webksibu-row {
             font-size: 0.85rem;
             margin-bottom: 8px;
         }

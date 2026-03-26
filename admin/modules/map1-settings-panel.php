@@ -12,15 +12,15 @@ $defaults = [
     'iframe_src'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.8290194528977!2d90.85983747536879!3d24.794488377972446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3756e70c3b3900b9%3A0x7498eb0a8b396f7c!2sWEBKIH!5e1!3m2!1sen!2sbd!4v1767615114491!5m2!1sen!2sbd'
 ];
 
-$opt_key = 'wbk_map1_settings';
+$opt_key = 'webksibu_map1_settings';
 
 /*--------------------------------------------------------------
 SAVE SETTINGS (SMART iframe HANDLER)
 --------------------------------------------------------------*/
-if ( isset($_POST['wbk_save_map1']) ) {
+if ( isset($_POST['webksibu_save_map1']) ) {
 
-    $nonce = isset($_POST['wbk_map1_nonce']) ? sanitize_text_field( wp_unslash($_POST['wbk_map1_nonce']) ) : '';
-    if ( ! wp_verify_nonce($nonce, 'wbk_save_map1_action') ) {
+    $nonce = isset($_POST['webksibu_map1_nonce']) ? sanitize_text_field( wp_unslash($_POST['webksibu_map1_nonce']) ) : '';
+    if ( ! wp_verify_nonce($nonce, 'webksibu_save_map1_action') ) {
         wp_die( esc_html__('Security check failed.', 'webkih-site-builder-kit') );
     }
 
@@ -53,10 +53,10 @@ $settings = array_merge($defaults, is_array($settings) ? $settings : []);
 
 <div class="wrap">
     <h1>Map (Style 1) Settings</h1>
-    <p>These values will show in shortcode: <code>[wbk_map1]</code></p>
+    <p>These values will show in shortcode: <code>[webksibu_map1]</code></p>
 
     <form method="post">
-        <?php wp_nonce_field('wbk_save_map1_action', 'wbk_map1_nonce'); ?>
+        <?php wp_nonce_field('webksibu_save_map1_action', 'webksibu_map1_nonce'); ?>
 
         <table class="form-table">
 
@@ -125,7 +125,7 @@ $settings = array_merge($defaults, is_array($settings) ? $settings : []);
         </table>
 
         <p>
-            <button class="button button-primary" type="submit" name="wbk_save_map1">
+            <button class="button button-primary" type="submit" name="webksibu_save_map1">
                 Save Map Settings
             </button>
         </p>

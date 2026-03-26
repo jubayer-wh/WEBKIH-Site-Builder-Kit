@@ -3,9 +3,9 @@ if ( ! defined('ABSPATH') ) exit;
 
 /**
  * Team Members – CPT + Shortcode
- * File: includes/wbk-team1.php
- * CPT: wbk_team
- * Parent Menu: WEBKIH Kit (wbk-dashboard)
+ * File: includes/webksibu-team1.php
+ * CPT: webksibu_team
+ * Parent Menu: WEBKIH Kit (webksibu-dashboard)
  */
 
 /*--------------------------------------------------------------
@@ -29,10 +29,10 @@ add_action('init', function () {
         'not_found_in_trash' => 'No team members found in Trash.',
     ];
 
-    register_post_type('wbk_team', [
+    register_post_type('webksibu_team', [
         'labels'             => $labels,
         'public'             => true,
-        'show_in_menu'       => 'wbk-dashboard', // 👈 KEY LINE
+        'show_in_menu'       => 'webksibu-dashboard', // 👈 KEY LINE
         'has_archive'        => false,
         'rewrite'            => false,
 
@@ -49,25 +49,25 @@ add_action('init', function () {
 --------------------------------------------------------------*/
 add_action('add_meta_boxes', function () {
     add_meta_box(
-        'wbk_team_role_box',
+        'webksibu_team_role_box',
         'Team Member Details',
-        'wbk_team_role_box_cb',
-        'wbk_team',
+        'webksibu_team_role_box_cb',
+        'webksibu_team',
         'normal',
         'high'
     );
 });
 
-function wbk_team_role_box_cb($post) {
-    $role = get_post_meta($post->ID, '_wbk_team_role', true);
-    wp_nonce_field('wbk_team_role_save', 'wbk_team_role_nonce');
+function webksibu_team_role_box_cb($post) {
+    $role = get_post_meta($post->ID, '_webksibu_team_role', true);
+    wp_nonce_field('webksibu_team_role_save', 'webksibu_team_role_nonce');
     ?>
     <p>
-        <label for="wbk_team_role"><strong>Role / Designation</strong></label><br>
+        <label for="webksibu_team_role"><strong>Role / Designation</strong></label><br>
         <input
             type="text"
-            id="wbk_team_role"
-            name="wbk_team_role"
+            id="webksibu_team_role"
+            name="webksibu_team_role"
             value="<?php echo esc_attr($role); ?>"
             class="regular-text"
             placeholder="e.g. Chief Operating Officer"
@@ -81,22 +81,22 @@ function wbk_team_role_box_cb($post) {
 /*--------------------------------------------------------------
 3) SAVE META
 --------------------------------------------------------------*/
-add_action('save_post_wbk_team', function ($post_id) {
+add_action('save_post_webksibu_team', function ($post_id) {
 
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
     if ( ! current_user_can('edit_post', $post_id) ) return;
 
     if (
-        ! isset($_POST['wbk_team_role_nonce']) ||
-        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_team_role_nonce']) ), 'wbk_team_role_save')
+        ! isset($_POST['webksibu_team_role_nonce']) ||
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['webksibu_team_role_nonce']) ), 'webksibu_team_role_save')
     ) {
         return;
     }
 
     update_post_meta(
         $post_id,
-        '_wbk_team_role',
-        sanitize_text_field( wp_unslash($_POST['wbk_team_role'] ?? '') )
+        '_webksibu_team_role',
+        sanitize_text_field( wp_unslash($_POST['webksibu_team_role'] ?? '') )
     );
 });
 
@@ -104,12 +104,12 @@ add_action('save_post_wbk_team', function ($post_id) {
 /*--------------------------------------------------------------
 3.5) ADMIN LIST: SHOW "ORDER" COLUMN + SORTABLE
 --------------------------------------------------------------*/
-add_filter('manage_wbk_team_posts_columns', function ($cols) {
+add_filter('manage_webksibu_team_posts_columns', function ($cols) {
     $new = [];
     foreach ($cols as $key => $label) {
         if ($key === 'title') {
             $new['title'] = $label;
-            $new['wbk_order'] = 'Order';
+            $new['webksibu_order'] = 'Order';
             continue;
         }
         $new[$key] = $label;
@@ -117,14 +117,14 @@ add_filter('manage_wbk_team_posts_columns', function ($cols) {
     return $new;
 });
 
-add_action('manage_wbk_team_posts_custom_column', function ($col, $post_id) {
-    if ($col === 'wbk_order') {
+add_action('manage_webksibu_team_posts_custom_column', function ($col, $post_id) {
+    if ($col === 'webksibu_order') {
         echo (int) get_post_field('menu_order', $post_id);
     }
 }, 10, 2);
 
-add_filter('manage_edit-wbk_team_sortable_columns', function ($cols) {
-    $cols['wbk_order'] = 'menu_order';
+add_filter('manage_edit-webksibu_team_sortable_columns', function ($cols) {
+    $cols['webksibu_order'] = 'menu_order';
     return $cols;
 });
 
@@ -132,7 +132,7 @@ add_action('pre_get_posts', function ($q) {
     if ( ! is_admin() || ! $q->is_main_query() ) return;
 
     $screen = function_exists('get_current_screen') ? get_current_screen() : null;
-    if ( ! $screen || $screen->post_type !== 'wbk_team' ) return;
+    if ( ! $screen || $screen->post_type !== 'webksibu_team' ) return;
 
     // Default admin ordering: menu_order ASC then date DESC
     if ( ! $q->get('orderby') ) {
@@ -149,20 +149,20 @@ add_action('pre_get_posts', function ($q) {
 /*--------------------------------------------------------------
 4) SHORTCODE OUTPUT
 --------------------------------------------------------------*/
-add_shortcode('wbk_team1', function ($atts) {
+add_shortcode('webksibu_team1', function ($atts) {
 
     wp_enqueue_style(
-        'wbk-team1-css',
-        WBK_URL . 'assets/css/team1.css',
+        'webksibu-team1-css',
+        WEBKSIBU_URL . 'assets/css/team1.css',
         [],
-        WBK_VER
+        WEBKSIBU_VER
     );
 
     $atts = shortcode_atts([
         'title' => 'Meet Our Expert Consultants',
         'limit' => 12,
         'order' => 'ASC',
-    ], $atts, 'wbk_team1');
+    ], $atts, 'webksibu_team1');
 
     $allowed_order = ['ASC', 'DESC'];
     $order = strtoupper( sanitize_key( (string) $atts['order'] ) );
@@ -173,7 +173,7 @@ add_shortcode('wbk_team1', function ($atts) {
     $limit = max(1, min(100, absint($atts['limit'])));
 
     $q = new WP_Query([
-        'post_type'      => 'wbk_team',
+        'post_type'      => 'webksibu_team',
         'posts_per_page' => $limit,
 
         // ✅ Custom order: first by menu_order (manual), then title
@@ -183,24 +183,24 @@ add_shortcode('wbk_team1', function ($atts) {
 
     ob_start(); ?>
 
-    <section class="wbk-team-section">
-        <h2 class="wbk-team-title"><?php echo esc_html($atts['title']); ?></h2>
+    <section class="webksibu-team-section">
+        <h2 class="webksibu-team-title"><?php echo esc_html($atts['title']); ?></h2>
 
-        <div class="wbk-team-grid">
+        <div class="webksibu-team-grid">
             <?php if ( $q->have_posts() ) : ?>
                 <?php while ( $q->have_posts() ) : $q->the_post(); ?>
                     <?php
-                        $role = get_post_meta(get_the_ID(), '_wbk_team_role', true);
+                        $role = get_post_meta(get_the_ID(), '_webksibu_team_role', true);
                         $img  = has_post_thumbnail()
                             ? get_the_post_thumbnail_url(get_the_ID(), 'large')
-                            : WBK_URL . 'assets/images/team-placeholder.svg';
+                            : WEBKSIBU_URL . 'assets/images/team-placeholder.svg';
                     ?>
 
-                    <div class="wbk-team-card">
-                        <div class="wbk-team-img" style="background-image:url('<?php echo esc_url($img); ?>')"></div>
-                        <h4 class="wbk-team-name"><?php echo esc_html( get_the_title() ); ?></h4>
+                    <div class="webksibu-team-card">
+                        <div class="webksibu-team-img" style="background-image:url('<?php echo esc_url($img); ?>')"></div>
+                        <h4 class="webksibu-team-name"><?php echo esc_html( get_the_title() ); ?></h4>
                         <?php if ($role): ?>
-                            <p class="wbk-team-role"><?php echo esc_html($role); ?></p>
+                            <p class="webksibu-team-role"><?php echo esc_html($role); ?></p>
                         <?php endif; ?>
                     </div>
 

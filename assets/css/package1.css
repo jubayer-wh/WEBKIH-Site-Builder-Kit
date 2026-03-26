@@ -1,5 +1,5 @@
     /* Global WBK Naming to avoid conflicts */
-    .wbk-package1-section {
+    .webksibu-package1-section {
         font-family: 'Poppins', sans-serif;
         max-width: 1200px;
         margin: 40px auto;
@@ -7,13 +7,13 @@
     }
 
     /* 4 Column Desktop / 2 Column Mobile Grid */
-    .wbk-package1-grid {
+    .webksibu-package1-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 15px;
     }
 
-    .wbk-package1-card {
+    .webksibu-package1-card {
         background: #fff;
         border-radius: 12px;
         overflow: hidden;
@@ -22,18 +22,18 @@
         transition: transform 0.3s ease;
     }
 
-    .wbk-package1-card:hover {
+    .webksibu-package1-card:hover {
         transform: translateY(-5px);
     }
 
-    .wbk-package1-img-box {
+    .webksibu-package1-img-box {
         height: 160px;
         background-size: cover;
         background-position: center;
         position: relative;
     }
 
-    .wbk-package1-badge {
+    .webksibu-package1-badge {
         position: absolute;
         top: 10px; left: 10px;
         background: #002e63; /* Faithway Blue */
@@ -45,18 +45,18 @@
         text-transform: uppercase;
     }
 
-    .wbk-package1-info {
+    .webksibu-package1-info {
         padding: 15px;
     }
 
-    .wbk-package1-info h3 {
+    .webksibu-package1-info h3 {
         margin: 0 0 10px;
         font-size: 16px;
         color: #002e63;
         font-weight: 700;
     }
 
-    .wbk-package1-footer {
+    .webksibu-package1-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -64,13 +64,13 @@
         padding-top: 12px;
     }
 
-    .wbk-package1-price {
+    .webksibu-package1-price {
         color: #e67e22; /* Faithway Orange */
         font-weight: 800;
         font-size: 14px;
     }
 
-    .wbk-package1-btn {
+    .webksibu-package1-btn {
         background: #002e63;
         color: #fff !important;
         text-decoration: none;
@@ -82,9 +82,9 @@
 
     /* Mobile Responsiveness */
     @media (max-width: 992px) {
-        .wbk-package1-grid { grid-template-columns: repeat(2, 1fr); }
+        .webksibu-package1-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
-        .wbk-package1-img-box { height: 140px; }
-        .wbk-package1-info h3 { font-size: 14px; }
+        .webksibu-package1-img-box { height: 140px; }
+        .webksibu-package1-info h3 { font-size: 14px; }
     }
