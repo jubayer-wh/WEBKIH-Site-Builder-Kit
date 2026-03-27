@@ -12,20 +12,20 @@
 
 if ( ! defined('ABSPATH') ) exit;
 
-define('WBK_VER', '1.0.0');
-define('WBK_DIR', plugin_dir_path(__FILE__));
-define('WBK_URL', plugin_dir_url(__FILE__));
+define('WEBKSIBU_VER', '1.0.0');
+define('WEBKSIBU_DIR', plugin_dir_path(__FILE__));
+define('WEBKSIBU_URL', plugin_dir_url(__FILE__));
 
 // Core: assets + admin menu
-require_once WBK_DIR . 'admin/core.php';
+require_once WEBKSIBU_DIR . 'admin/core.php';
 
 // Addons (shortcodes)
-require_once WBK_DIR . 'includes/wbk-slider1.php';
-require_once WBK_DIR . 'includes/wbk-slider2.php';
-require_once WBK_DIR . 'includes/wbk-team1.php';
-require_once WBK_DIR . 'includes/wbk-map1.php';
-require_once WBK_DIR . 'includes/wbk-success1.php';
-require_once WBK_DIR . 'includes/wbk-package1.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-slider1.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-slider2.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-team1.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-map1.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-success1.php';
+require_once WEBKSIBU_DIR . 'includes/webksibu-package1.php';
 
 
 
@@ -33,7 +33,7 @@ require_once WBK_DIR . 'includes/wbk-package1.php';
 add_action('template_redirect', function () {
 
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview query var; no state change.
-    if ( ! isset($_GET['wbk_preview']) ) {
+    if ( ! isset($_GET['webksibu_preview']) ) {
         return;
     }
 
@@ -44,19 +44,19 @@ add_action('template_redirect', function () {
     }
 
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview query var; no state change.
-    $raw = sanitize_text_field( wp_unslash($_GET['wbk_preview']) );
+    $raw = sanitize_text_field( wp_unslash($_GET['webksibu_preview']) );
 
     /**
      * Security: whitelist ONLY your plugin shortcodes
      * We accept either:
-     *  - wbk_success1_3
-     *  - [wbk_success1_3]
-     *  - wbk_success1_3 cat="x"
-     *  - [wbk_success1_3 cat="x"]
+     *  - webksibu_success1_3
+     *  - [webksibu_success1_3]
+     *  - webksibu_success1_3 cat="x"
+     *  - [webksibu_success1_3 cat="x"]
      */
     $raw = trim($raw);
 
-    // If they passed just "wbk_xxx", wrap it
+    // If they passed just "webksibu_xxx", wrap it
     if ( $raw !== '' && $raw[0] !== '[' ) {
         $raw = '[' . $raw . ']';
     }
@@ -68,13 +68,13 @@ add_action('template_redirect', function () {
     }
 
     $allowed_shortcodes = [
-        'wbk_map1',
-        'wbk_slider1',
-        'wbk_slider2',
-        'wbk_team1',
-        'wbk_success1_3',
-        'wbk_success1_all',
-        'wbk_package1',
+        'webksibu_map1',
+        'webksibu_slider1',
+        'webksibu_slider2',
+        'webksibu_team1',
+        'webksibu_success1_3',
+        'webksibu_success1_all',
+        'webksibu_package1',
     ];
 
     if ( ! in_array( strtolower($matches[1]), $allowed_shortcodes, true ) ) {
@@ -99,9 +99,9 @@ add_action('template_redirect', function () {
          * - This will output enqueued CSS/JS from your shortcode (wp_enqueue_style calls)
          * - Also outputs theme styles (fine for accurate preview)
          */
-        wp_register_style('wbk-preview-inline-style', false, [], WBK_VER);
-        wp_enqueue_style('wbk-preview-inline-style');
-        wp_add_inline_style('wbk-preview-inline-style', 'body{margin:0;padding:18px;background:#fff;}img{max-width:100%;height:auto;}');
+        wp_register_style('webksibu-preview-inline-style', false, [], WEBKSIBU_VER);
+        wp_enqueue_style('webksibu-preview-inline-style');
+        wp_add_inline_style('webksibu-preview-inline-style', 'body{margin:0;padding:18px;background:#fff;}img{max-width:100%;height:auto;}');
         wp_head();
         ?>
     </head>

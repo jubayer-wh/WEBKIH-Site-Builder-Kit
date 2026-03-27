@@ -3,23 +3,23 @@ if ( ! defined('ABSPATH') ) exit;
 if ( ! current_user_can('manage_options') ) return;
 
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin routing parameter.
-$module = isset($_GET['module']) ? sanitize_key( wp_unslash($_GET['module']) ) : 'success1';
+$webksibu_module = isset($_GET['module']) ? sanitize_key( wp_unslash($_GET['module']) ) : 'success1';
 
-$modules = [
+$webksibu_modules = [
     'dashboard' => [
         'title' => 'Primary Dashboard',
         'desc'  => 'brand, colors',
-        'file'  => WBK_DIR . 'admin/modules/settings-dashboard.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/settings-dashboard.php',
     ],    
     'success1' => [
         'title' => 'Success Stories (Style 1)',
         'desc'  => 'Title, caption, hide, colors, columns',
-        'file'  => WBK_DIR . 'admin/modules/success1-settings-panel.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/success1-settings-panel.php',
     ],
     'map1' => [
         'title' => 'Map (Style 1)',
         'desc'  => 'Title, address, button, iframe',
-        'file'  => WBK_DIR . 'admin/modules/map1-settings-panel.php',
+        'file'  => WEBKSIBU_DIR . 'admin/modules/map1-settings-panel.php',
     ],
 
     // Add more modules later:
@@ -27,35 +27,35 @@ $modules = [
     // 'reviews1' => ...
 ];
 
-if ( ! isset($modules[$module]) ) {
-    $module = 'success1';
+if ( ! isset($webksibu_modules[$webksibu_module]) ) {
+    $webksibu_module = 'success1';
 }
 ?>
 
 <div class="wrap">
     <h1>WEBKIH Kit Settings</h1>
 
-    <div class="wbk-hub">
-        <div class="wbk-hub-left">
-            <h2 class="wbk-modules-heading">Modules</h2>
+    <div class="webksibu-hub">
+        <div class="webksibu-hub-left">
+            <h2 class="webksibu-modules-heading">Modules</h2>
 
-            <?php foreach ($modules as $key => $m): ?>
+            <?php foreach ($webksibu_modules as $webksibu_key => $webksibu_module_config): ?>
                 <?php
-                    $url = add_query_arg(['page' => 'wbk-settings', 'module' => $key], admin_url('admin.php'));
-                    $active = ($key === $module) ? 'is-active' : '';
+                    $webksibu_url = add_query_arg(['page' => 'webksibu-settings', 'module' => $webksibu_key], admin_url('admin.php'));
+                    $webksibu_active = ($webksibu_key === $webksibu_module) ? 'is-active' : '';
                 ?>
-                <a class="wbk-mod-card <?php echo esc_attr($active); ?>" href="<?php echo esc_url($url); ?>">
-                    <p class="wbk-mod-title"><?php echo esc_html($m['title']); ?></p>
-                    <p class="wbk-mod-desc"><?php echo esc_html($m['desc']); ?></p>
+                <a class="webksibu-mod-card <?php echo esc_attr($webksibu_active); ?>" href="<?php echo esc_url($webksibu_url); ?>">
+                    <p class="webksibu-mod-title"><?php echo esc_html($webksibu_module_config['title']); ?></p>
+                    <p class="webksibu-mod-desc"><?php echo esc_html($webksibu_module_config['desc']); ?></p>
                 </a>
             <?php endforeach; ?>
         </div>
 
-        <div class="wbk-hub-right">
+        <div class="webksibu-hub-right">
             <?php
-                $panel_file = $modules[$module]['file'];
-                if ( file_exists($panel_file) ) {
-                    require $panel_file;
+                $webksibu_panel_file = $webksibu_modules[$webksibu_module]['file'];
+                if ( file_exists($webksibu_panel_file) ) {
+                    require $webksibu_panel_file;
                 } else {
                     echo '<p>Settings panel file not found.</p>';
                 }

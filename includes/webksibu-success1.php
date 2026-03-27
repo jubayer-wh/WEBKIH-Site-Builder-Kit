@@ -3,15 +3,15 @@ if ( ! defined('ABSPATH') ) exit;
 
 /**
  * Success Stories (Style 1)
- * CPT: wbk_success
- * Taxonomy: wbk_success_category
+ * CPT: webksibu_success
+ * Taxonomy: webksibu_success_category
  *
  * Shortcodes:
- *  - [wbk_success1_3 cat="slug"]   => shows 3
- *  - [wbk_success1_all cat="slug"] => shows all
+ *  - [webksibu_success1_3 cat="slug"]   => shows 3
+ *  - [webksibu_success1_all cat="slug"] => shows all
  *
  * Settings option:
- *  - wbk_success1_settings (title, caption, hide heading, colors, columns)
+ *  - webksibu_success1_settings (title, caption, hide heading, colors, columns)
  *
  * CSS:
  *  - assets/css/success1.css
@@ -37,10 +37,10 @@ add_action('init', function () {
         'not_found_in_trash' => 'No stories found in Trash.',
     ];
 
-    register_post_type('wbk_success', [
+    register_post_type('webksibu_success', [
         'labels'          => $labels,
         'public'          => true,
-        'show_in_menu'    => 'wbk-dashboard', // submenu under WEBKIH Kit
+        'show_in_menu'    => 'webksibu-dashboard', // submenu under WEBKIH Kit
         'has_archive'     => false,
         'rewrite'         => false,
         'supports'        => ['title', 'thumbnail'],
@@ -60,7 +60,7 @@ add_action('init', function () {
         'menu_name'     => 'Categories',
     ];
 
-    register_taxonomy('wbk_success_category', ['wbk_success'], [
+    register_taxonomy('webksibu_success_category', ['webksibu_success'], [
         'labels'            => $tax_labels,
         'public'            => true,
         'hierarchical'      => true,
@@ -76,63 +76,63 @@ add_action('init', function () {
 --------------------------------------------------------------*/
 add_action('add_meta_boxes', function () {
     add_meta_box(
-        'wbk_success_details',
+        'webksibu_success_details',
         'Success Story Details',
-        'wbk_success_details_metabox_cb',
-        'wbk_success',
+        'webksibu_success_details_metabox_cb',
+        'webksibu_success',
         'normal',
         'high'
     );
 });
 
-function wbk_success_details_metabox_cb($post) {
+function webksibu_success_details_metabox_cb($post) {
 
-    $badge       = get_post_meta($post->ID, '_wbk_success_badge', true);
-    $destination = get_post_meta($post->ID, '_wbk_success_destination', true);
-    $quote       = get_post_meta($post->ID, '_wbk_success_quote', true);
-    $issued      = get_post_meta($post->ID, '_wbk_success_issued', true);
-    $rating      = get_post_meta($post->ID, '_wbk_success_rating', true);
+    $badge       = get_post_meta($post->ID, '_webksibu_success_badge', true);
+    $destination = get_post_meta($post->ID, '_webksibu_success_destination', true);
+    $quote       = get_post_meta($post->ID, '_webksibu_success_quote', true);
+    $issued      = get_post_meta($post->ID, '_webksibu_success_issued', true);
+    $rating      = get_post_meta($post->ID, '_webksibu_success_rating', true);
 
-    wp_nonce_field('wbk_success_save_metabox', 'wbk_success_nonce');
+    wp_nonce_field('webksibu_success_save_metabox', 'webksibu_success_nonce');
     ?>
     <table class="form-table">
         <tr>
-            <th><label for="wbk_success_badge">Badge (Visa Type)</label></th>
+            <th><label for="webksibu_success_badge">Badge (Visa Type)</label></th>
             <td>
-                <input type="text" class="regular-text" id="wbk_success_badge" name="wbk_success_badge"
+                <input type="text" class="regular-text" id="webksibu_success_badge" name="webksibu_success_badge"
                        value="<?php echo esc_attr($badge); ?>" placeholder="e.g. Student Visa">
             </td>
         </tr>
 
         <tr>
-            <th><label for="wbk_success_destination">Destination (text only)</label></th>
+            <th><label for="webksibu_success_destination">Destination (text only)</label></th>
             <td>
-                <input type="text" class="large-text" id="wbk_success_destination" name="wbk_success_destination"
+                <input type="text" class="large-text" id="webksibu_success_destination" name="webksibu_success_destination"
                        value="<?php echo esc_attr($destination); ?>" placeholder="e.g. University of Greenwich, UK">
                 <p class="description">Frontend automatically adds 📍 icon.</p>
             </td>
         </tr>
 
         <tr>
-            <th><label for="wbk_success_quote">Quote</label></th>
+            <th><label for="webksibu_success_quote">Quote</label></th>
             <td>
-                <textarea class="large-text" rows="4" id="wbk_success_quote" name="wbk_success_quote"
+                <textarea class="large-text" rows="4" id="webksibu_success_quote" name="webksibu_success_quote"
                           placeholder="Write the client quote..."><?php echo esc_textarea($quote); ?></textarea>
             </td>
         </tr>
 
         <tr>
-            <th><label for="wbk_success_issued">Visa Issued (text)</label></th>
+            <th><label for="webksibu_success_issued">Visa Issued (text)</label></th>
             <td>
-                <input type="text" class="regular-text" id="wbk_success_issued" name="wbk_success_issued"
+                <input type="text" class="regular-text" id="webksibu_success_issued" name="webksibu_success_issued"
                        value="<?php echo esc_attr($issued); ?>" placeholder="e.g. Dec 2025">
             </td>
         </tr>
 
         <tr>
-            <th><label for="wbk_success_rating">Rating</label></th>
+            <th><label for="webksibu_success_rating">Rating</label></th>
             <td>
-                <input type="text" class="regular-text" id="wbk_success_rating" name="wbk_success_rating"
+                <input type="text" class="regular-text" id="webksibu_success_rating" name="webksibu_success_rating"
                        value="<?php echo esc_attr($rating); ?>" placeholder="e.g. ⭐⭐⭐⭐⭐ (blank = default)">
                 <p class="description">Leave blank to show default: ⭐⭐⭐⭐⭐</p>
             </td>
@@ -147,36 +147,36 @@ function wbk_success_details_metabox_cb($post) {
 /*--------------------------------------------------------------
 3) SAVE META (SECURE)
 --------------------------------------------------------------*/
-add_action('save_post_wbk_success', function ($post_id) {
+add_action('save_post_webksibu_success', function ($post_id) {
 
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
     if ( ! current_user_can('edit_post', $post_id) ) return;
 
     if (
-        ! isset($_POST['wbk_success_nonce']) ||
-        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_success_nonce']) ), 'wbk_success_save_metabox')
+        ! isset($_POST['webksibu_success_nonce']) ||
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['webksibu_success_nonce']) ), 'webksibu_success_save_metabox')
     ) {
         return;
     }
 
-    $badge       = isset($_POST['wbk_success_badge']) ? sanitize_text_field( wp_unslash($_POST['wbk_success_badge']) ) : '';
-    $destination = isset($_POST['wbk_success_destination']) ? sanitize_text_field( wp_unslash($_POST['wbk_success_destination']) ) : '';
-    $quote       = isset($_POST['wbk_success_quote']) ? sanitize_textarea_field( wp_unslash($_POST['wbk_success_quote']) ) : '';
-    $issued      = isset($_POST['wbk_success_issued']) ? sanitize_text_field( wp_unslash($_POST['wbk_success_issued']) ) : '';
-    $rating      = isset($_POST['wbk_success_rating']) ? sanitize_text_field( wp_unslash($_POST['wbk_success_rating']) ) : '';
+    $badge       = isset($_POST['webksibu_success_badge']) ? sanitize_text_field( wp_unslash($_POST['webksibu_success_badge']) ) : '';
+    $destination = isset($_POST['webksibu_success_destination']) ? sanitize_text_field( wp_unslash($_POST['webksibu_success_destination']) ) : '';
+    $quote       = isset($_POST['webksibu_success_quote']) ? sanitize_textarea_field( wp_unslash($_POST['webksibu_success_quote']) ) : '';
+    $issued      = isset($_POST['webksibu_success_issued']) ? sanitize_text_field( wp_unslash($_POST['webksibu_success_issued']) ) : '';
+    $rating      = isset($_POST['webksibu_success_rating']) ? sanitize_text_field( wp_unslash($_POST['webksibu_success_rating']) ) : '';
 
-    update_post_meta($post_id, '_wbk_success_badge', $badge);
-    update_post_meta($post_id, '_wbk_success_destination', $destination);
-    update_post_meta($post_id, '_wbk_success_quote', $quote);
-    update_post_meta($post_id, '_wbk_success_issued', $issued);
-    update_post_meta($post_id, '_wbk_success_rating', $rating);
+    update_post_meta($post_id, '_webksibu_success_badge', $badge);
+    update_post_meta($post_id, '_webksibu_success_destination', $destination);
+    update_post_meta($post_id, '_webksibu_success_quote', $quote);
+    update_post_meta($post_id, '_webksibu_success_issued', $issued);
+    update_post_meta($post_id, '_webksibu_success_rating', $rating);
 });
 
 
 /*--------------------------------------------------------------
 4) SETTINGS (TITLE/CAPTION/HIDE/COLORS/COLUMNS)
 --------------------------------------------------------------*/
-function wbk_success1_get_settings() {
+function webksibu_success1_get_settings() {
 
     $defaults = [
         'title'        => 'Our Recent Success Stories',
@@ -194,7 +194,7 @@ function wbk_success1_get_settings() {
         'min_card_width' => 350,  // 220..600 (px)
     ];
 
-    $opt = get_option('wbk_success1_settings', []);
+    $opt = get_option('webksibu_success1_settings', []);
     $opt = is_array($opt) ? $opt : [];
 
     $s = array_merge($defaults, $opt);
@@ -222,11 +222,11 @@ function wbk_success1_get_settings() {
 /*--------------------------------------------------------------
 5) ICON + DEFAULTS
 --------------------------------------------------------------*/
-function wbk_success1_default_stars() {
+function webksibu_success1_default_stars() {
     return '⭐⭐⭐⭐⭐';
 }
 
-function wbk_success1_location_icon() {
+function webksibu_success1_location_icon() {
     return '📍';
 }
 
@@ -234,16 +234,16 @@ function wbk_success1_location_icon() {
 /*--------------------------------------------------------------
 6) SHORTCODE RENDER FUNCTION
 --------------------------------------------------------------*/
-function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
+function webksibu_render_success1_cards( $limit = 3, $cat_slug = '' ) {
 
-    wp_enqueue_style('wbk-success1-css', WBK_URL . 'assets/css/success1.css', [], WBK_VER);
+    wp_enqueue_style('webksibu-success1-css', WEBKSIBU_URL . 'assets/css/success1.css', [], WEBKSIBU_VER);
 
-    $set = wbk_success1_get_settings();
+    $set = webksibu_success1_get_settings();
 
     // Inline CSS variables + grid tuning (safe)
     $inline_css = sprintf(
         ':root{--deep-blue:%1$s;--accent-blue:%2$s;--success-green:%3$s;--light-gray:%4$s;}
-        .wbk-success-grid{grid-template-columns:repeat(%5$d, minmax(%6$dpx, 1fr));}',
+        .webksibu-success-grid{grid-template-columns:repeat(%5$d, minmax(%6$dpx, 1fr));}',
         esc_attr($set['deep_blue']),
         esc_attr($set['accent_blue']),
         esc_attr($set['success_green']),
@@ -253,7 +253,7 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
     );
 
     $args = [
-        'post_type'      => 'wbk_success',
+        'post_type'      => 'webksibu_success',
         'post_status'    => 'publish',
         'posts_per_page' => (int) $limit,
         'orderby'        => 'date',
@@ -267,7 +267,7 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
         // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Taxonomy filtering is user-configurable shortcode behavior.
         $args['tax_query'] = [
             [
-                'taxonomy' => 'wbk_success_category',
+                'taxonomy' => 'webksibu_success_category',
                 'field'    => 'slug',
                 'terms'    => $cat_slug,
             ]
@@ -280,33 +280,33 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
         return '';
     }
 
-    $stars_default = wbk_success1_default_stars();
-    $loc_icon = wbk_success1_location_icon();
+    $stars_default = webksibu_success1_default_stars();
+    $loc_icon = webksibu_success1_location_icon();
 
     ob_start();
 
     // Print inline style (not user-controlled raw; sanitized/clamped above)
-    wp_register_style('wbk-success1-inline', false, [], WBK_VER);
-    wp_enqueue_style('wbk-success1-inline');
-    wp_add_inline_style('wbk-success1-inline', $inline_css);
+    wp_register_style('webksibu-success1-inline', false, [], WEBKSIBU_VER);
+    wp_enqueue_style('webksibu-success1-inline');
+    wp_add_inline_style('webksibu-success1-inline', $inline_css);
     ?>
-    <section class="wbk-success-section">
+    <section class="webksibu-success-section">
 
         <?php if ( ! $set['hide_heading'] ) : ?>
-            <div class="wbk-section-title">
+            <div class="webksibu-section-title">
                 <h2><?php echo esc_html($set['title']); ?></h2>
                 <p><?php echo esc_html($set['caption']); ?></p>
             </div>
         <?php endif; ?>
 
-        <div class="wbk-success-grid">
+        <div class="webksibu-success-grid">
             <?php while ( $q->have_posts() ) : $q->the_post(); ?>
                 <?php
-                    $badge       = (string) get_post_meta(get_the_ID(), '_wbk_success_badge', true);
-                    $destination = (string) get_post_meta(get_the_ID(), '_wbk_success_destination', true);
-                    $quote       = (string) get_post_meta(get_the_ID(), '_wbk_success_quote', true);
-                    $issued      = (string) get_post_meta(get_the_ID(), '_wbk_success_issued', true);
-                    $rating      = (string) get_post_meta(get_the_ID(), '_wbk_success_rating', true);
+                    $badge       = (string) get_post_meta(get_the_ID(), '_webksibu_success_badge', true);
+                    $destination = (string) get_post_meta(get_the_ID(), '_webksibu_success_destination', true);
+                    $quote       = (string) get_post_meta(get_the_ID(), '_webksibu_success_quote', true);
+                    $issued      = (string) get_post_meta(get_the_ID(), '_webksibu_success_issued', true);
+                    $rating      = (string) get_post_meta(get_the_ID(), '_webksibu_success_rating', true);
 
                     $badge = trim($badge);
                     $destination = trim($destination);
@@ -322,32 +322,32 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
                     $alt = get_the_title();
                 ?>
 
-                <div class="wbk-success-card">
-                    <div class="wbk-success-image-wrap">
+                <div class="webksibu-success-card">
+                    <div class="webksibu-success-image-wrap">
                         <?php if ( $img ) : ?>
                             <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($alt); ?>">
                         <?php endif; ?>
 
                         <?php if ( $badge !== '' ) : ?>
-                            <span class="wbk-visa-badge"><?php echo esc_html($badge); ?></span>
+                            <span class="webksibu-visa-badge"><?php echo esc_html($badge); ?></span>
                         <?php endif; ?>
                     </div>
 
-                    <div class="wbk-success-content">
+                    <div class="webksibu-success-content">
                         <h3><?php echo esc_html( get_the_title() ); ?></h3>
 
                         <?php if ( $destination !== '' ) : ?>
-                            <span class="wbk-destination-tag">
+                            <span class="webksibu-destination-tag">
                                 <?php echo esc_html( $loc_icon . ' ' . $destination ); ?>
                             </span>
                         <?php endif; ?>
 
                         <?php if ( $quote !== '' ) : ?>
-                            <p class="wbk-success-quote"><?php echo esc_html($quote); ?></p>
+                            <p class="webksibu-success-quote"><?php echo esc_html($quote); ?></p>
                         <?php endif; ?>
                     </div>
 
-                    <div class="wbk-success-footer">
+                    <div class="webksibu-success-footer">
                         <span>
                             <?php
                                 if ( $issued !== '' ) {
@@ -372,14 +372,14 @@ function wbk_render_success1_cards( $limit = 3, $cat_slug = '' ) {
 /*--------------------------------------------------------------
 7) SHORTCODES (3 items + all)
 --------------------------------------------------------------*/
-add_shortcode('wbk_success1_3', function($atts){
-    $a = shortcode_atts(['cat' => ''], $atts, 'wbk_success1_3');
+add_shortcode('webksibu_success1_3', function($atts){
+    $a = shortcode_atts(['cat' => ''], $atts, 'webksibu_success1_3');
     $cat = isset($a['cat']) ? (string) $a['cat'] : '';
-    return wbk_render_success1_cards(3, $cat);
+    return webksibu_render_success1_cards(3, $cat);
 });
 
-add_shortcode('wbk_success1_all', function($atts){
-    $a = shortcode_atts(['cat' => ''], $atts, 'wbk_success1_all');
+add_shortcode('webksibu_success1_all', function($atts){
+    $a = shortcode_atts(['cat' => ''], $atts, 'webksibu_success1_all');
     $cat = isset($a['cat']) ? (string) $a['cat'] : '';
-    return wbk_render_success1_cards(-1, $cat);
+    return webksibu_render_success1_cards(-1, $cat);
 });

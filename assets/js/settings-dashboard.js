@@ -1,9 +1,9 @@
 (function(){
     const primary = document.getElementById('primary_color');
     const accent  = document.getElementById('accent_color');
-    const pPrev   = document.getElementById('wbkPrimaryPreview');
-    const aPrev   = document.getElementById('wbkAccentPreview');
-    const resetBtn = document.getElementById('wbkResetDefaults');
+    const pPrev   = document.getElementById('webksibuPrimaryPreview');
+    const aPrev   = document.getElementById('webksibuAccentPreview');
+    const resetBtn = document.getElementById('webksibuResetDefaults');
 
     if (!primary || !accent || !pPrev || !aPrev || !resetBtn) {
         return;

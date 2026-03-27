@@ -4,112 +4,112 @@ if ( ! defined('ABSPATH') ) exit;
 /**
  * Enqueue admin + frontend assets (WP-standard)
  */
-function wbk_enqueue_frontend_assets() {
+function webksibu_enqueue_frontend_assets() {
 
     wp_enqueue_script(
-        'wbk-main-js',
-        WBK_URL . 'assets/js/main.js',
+        'webksibu-main-js',
+        WEBKSIBU_URL . 'assets/js/main.js',
         [],
-        WBK_VER,
+        WEBKSIBU_VER,
         true
     );
 
     wp_enqueue_style(
-        'wbk-map1-css',
-        WBK_URL . 'assets/css/map1.css',
+        'webksibu-map1-css',
+        WEBKSIBU_URL . 'assets/css/map1.css',
         [],
-        WBK_VER
+        WEBKSIBU_VER
     );
 }
-add_action('wp_enqueue_scripts', 'wbk_enqueue_frontend_assets');
+add_action('wp_enqueue_scripts', 'webksibu_enqueue_frontend_assets');
 
-function wbk_enqueue_admin_assets( $hook ) {
+function webksibu_enqueue_admin_assets( $hook ) {
 
-    if ( strpos($hook, 'wbk') === false ) {
+    if ( strpos($hook, 'webksibu') === false ) {
         return;
     }
 
     wp_enqueue_style(
-        'wbk-admin-css',
-        WBK_URL . 'assets/css/admin.css',
+        'webksibu-admin-css',
+        WEBKSIBU_URL . 'assets/css/admin.css',
         [],
-        WBK_VER
+        WEBKSIBU_VER
     );
 
     wp_enqueue_script(
-        'wbk-admin-js',
-        WBK_URL . 'assets/js/main.js',
+        'webksibu-admin-js',
+        WEBKSIBU_URL . 'assets/js/main.js',
         ['jquery'],
-        WBK_VER,
+        WEBKSIBU_VER,
         true
     );
 
-    if ( 'toplevel_page_wbk-dashboard' === $hook ) {
-        wbk_enqueue_settings_dashboard_assets();
+    if ( 'toplevel_page_webksibu-dashboard' === $hook ) {
+        webksibu_enqueue_settings_dashboard_assets();
     }
 
-    if ( strpos($hook, 'wbk-settings') !== false ) {
+    if ( strpos($hook, 'webksibu-settings') !== false ) {
         wp_enqueue_style(
-            'wbk-settings-hub-css',
-            WBK_URL . 'assets/css/settings-hub.css',
-            ['wbk-admin-css'],
-            WBK_VER
+            'webksibu-settings-hub-css',
+            WEBKSIBU_URL . 'assets/css/settings-hub.css',
+            ['webksibu-admin-css'],
+            WEBKSIBU_VER
         );
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only module router in admin.
         $module = isset($_GET['module']) ? sanitize_key( wp_unslash($_GET['module']) ) : 'success1';
         if ( 'dashboard' === $module ) {
-            wbk_enqueue_settings_dashboard_assets();
+            webksibu_enqueue_settings_dashboard_assets();
         }
     }
 
-    if ( strpos($hook, 'wbk-documentation') !== false ) {
+    if ( strpos($hook, 'webksibu-documentation') !== false ) {
         wp_enqueue_style(
-            'wbk-documentation-css',
-            WBK_URL . 'assets/css/documentation.css',
-            ['wbk-admin-css'],
-            WBK_VER
+            'webksibu-documentation-css',
+            WEBKSIBU_URL . 'assets/css/documentation.css',
+            ['webksibu-admin-css'],
+            WEBKSIBU_VER
         );
         wp_enqueue_script(
-            'wbk-documentation-js',
-            WBK_URL . 'assets/js/documentation.js',
+            'webksibu-documentation-js',
+            WEBKSIBU_URL . 'assets/js/documentation.js',
             [],
-            WBK_VER,
+            WEBKSIBU_VER,
             true
         );
     }
 }
-add_action('admin_enqueue_scripts', 'wbk_enqueue_admin_assets');
+add_action('admin_enqueue_scripts', 'webksibu_enqueue_admin_assets');
 
-function wbk_enqueue_settings_dashboard_assets() {
+function webksibu_enqueue_settings_dashboard_assets() {
     $defaults = [
         'primary_color' => '#0e304c',
         'accent_color'  => '#38bdf8',
     ];
 
-    $settings = get_option('wbk_settings', []);
+    $settings = get_option('webksibu_settings', []);
     $settings = array_merge($defaults, is_array($settings) ? $settings : []);
 
     $primary = sanitize_hex_color($settings['primary_color']) ?: $defaults['primary_color'];
     $accent  = sanitize_hex_color($settings['accent_color']) ?: $defaults['accent_color'];
 
     wp_enqueue_style(
-        'wbk-settings-dashboard-css',
-        WBK_URL . 'assets/css/settings-dashboard.css',
-        ['wbk-admin-css'],
-        WBK_VER
+        'webksibu-settings-dashboard-css',
+        WEBKSIBU_URL . 'assets/css/settings-dashboard.css',
+        ['webksibu-admin-css'],
+        WEBKSIBU_VER
     );
 
     wp_add_inline_style(
-        'wbk-settings-dashboard-css',
-        ':root{--wbk-primary:' . $primary . ';--wbk-accent:' . $accent . ';--wbk-border:#e5e7eb;--wbk-muted:#64748b;--wbk-card:#ffffff;--wbk-bg:#f8fafc;}'
+        'webksibu-settings-dashboard-css',
+        ':root{--webksibu-primary:' . $primary . ';--webksibu-accent:' . $accent . ';--webksibu-border:#e5e7eb;--webksibu-muted:#64748b;--webksibu-card:#ffffff;--webksibu-bg:#f8fafc;}'
     );
 
     wp_enqueue_script(
-        'wbk-settings-dashboard-js',
-        WBK_URL . 'assets/js/settings-dashboard.js',
+        'webksibu-settings-dashboard-js',
+        WEBKSIBU_URL . 'assets/js/settings-dashboard.js',
         [],
-        WBK_VER,
+        WEBKSIBU_VER,
         true
     );
 }
@@ -118,64 +118,64 @@ function wbk_enqueue_settings_dashboard_assets() {
 /**
  * Admin Menu
  */
-function wbk_register_admin_menu() {
+function webksibu_register_admin_menu() {
 
     add_menu_page(
         'WEBKIH Site Builder Kit',
         'WEBKIH Kit',
         'manage_options',
-        'wbk-dashboard',
-        'wbk_render_dashboard',
+        'webksibu-dashboard',
+        'webksibu_render_dashboard',
         'dashicons-screenoptions',
         26
     );
 
     add_submenu_page(
-        'wbk-dashboard',
+        'webksibu-dashboard',
         'Map (Style 1)',
         'Map (Style 1)',
         'manage_options',
-        'wbk-map1',
-        'wbk_render_map1_admin_page'
+        'webksibu-map1',
+        'webksibu_render_map1_admin_page'
     );
 
 
     add_submenu_page(
-        'wbk-dashboard',
+        'webksibu-dashboard',
         'WEBKIH Kit Settings',
         'Settings',
         'manage_options',
-        'wbk-settings',
-        'wbk_render_settings_hub'
+        'webksibu-settings',
+        'webksibu_render_settings_hub'
     );
 
     add_submenu_page(
-        'wbk-dashboard',
+        'webksibu-dashboard',
         'Documentation',
         'Documentation',
         'manage_options',
-        'wbk-documentation',
-        'wbk_render_docs'
+        'webksibu-documentation',
+        'webksibu_render_docs'
     );
 }
-add_action('admin_menu', 'wbk_register_admin_menu');
+add_action('admin_menu', 'webksibu_register_admin_menu');
 
 
 /**
  * Page renders
  */
-function wbk_render_dashboard() {
-    require WBK_DIR . 'admin/wbk-admin-ui.php';
+function webksibu_render_dashboard() {
+    require WEBKSIBU_DIR . 'admin/webksibu-admin-ui.php';
 }
 
-function wbk_render_settings_hub() {
-    require WBK_DIR . 'admin/settings-hub.php';
+function webksibu_render_settings_hub() {
+    require WEBKSIBU_DIR . 'admin/settings-hub.php';
 }
 
-function wbk_render_docs() {
-    require WBK_DIR . 'admin/wbk-documentation.php';
+function webksibu_render_docs() {
+    require WEBKSIBU_DIR . 'admin/webksibu-documentation.php';
 }
 
-function wbk_render_map1_settings() {
-    require WBK_DIR . 'includes/wbk-map1.php';
+function webksibu_render_map1_settings() {
+    require WEBKSIBU_DIR . 'includes/webksibu-map1.php';
 }

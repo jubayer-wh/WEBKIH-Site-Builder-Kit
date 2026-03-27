@@ -3,8 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Slider 1 (Swiper Fade) + CPT + Accordion admin view
- * CPT: wbk_slider1
- * Shortcode: [wbk_slider1]
+ * CPT: webksibu_slider1
+ * Shortcode: [webksibu_slider1]
  *
  * JS logic moved to assets/js/slider1.js
  */
@@ -29,11 +29,11 @@ add_action('init', function () {
         'not_found_in_trash' => 'No slides found in Trash.',
     ];
 
-    register_post_type('wbk_slider1', [
+    register_post_type('webksibu_slider1', [
         'labels'          => $labels,
         'public'          => false,
         'show_ui'         => true,
-        'show_in_menu'    => 'wbk-dashboard',
+        'show_in_menu'    => 'webksibu-dashboard',
         'menu_icon'       => 'dashicons-images-alt2',
         'supports'        => ['title', 'thumbnail'],
         'capability_type' => 'post',
@@ -51,18 +51,18 @@ add_action( 'wp_enqueue_scripts', function () {
 
     // Slider 1 CSS
     wp_enqueue_style(
-        'wbk-slider1-style',
-        WBK_URL . 'assets/css/slider1.css',
+        'webksibu-slider1-style',
+        WEBKSIBU_URL . 'assets/css/slider1.css',
         [],
-        WBK_VER
+        WEBKSIBU_VER
     );
 
     // ✅ Slider 1 JS (no external dependency)
     wp_enqueue_script(
-        'wbk-slider1-js',
-        WBK_URL . 'assets/js/slider1.js',
+        'webksibu-slider1-js',
+        WEBKSIBU_URL . 'assets/js/slider1.js',
         [],
-        WBK_VER,
+        WEBKSIBU_VER,
         true
     );
 });
@@ -73,40 +73,40 @@ add_action( 'wp_enqueue_scripts', function () {
 --------------------------------------------------------------*/
 add_action('add_meta_boxes', function () {
     add_meta_box(
-        'wbk_slider1_meta',
+        'webksibu_slider1_meta',
         'Slide Content',
-        'wbk_slider1_meta_cb',
-        'wbk_slider1',
+        'webksibu_slider1_meta_cb',
+        'webksibu_slider1',
         'normal',
         'high'
     );
 });
 
-function wbk_slider1_meta_cb($post) {
+function webksibu_slider1_meta_cb($post) {
 
-    $desc     = get_post_meta($post->ID, '_wbk_slider1_desc', true);
-    $btn_text = get_post_meta($post->ID, '_wbk_slider1_btn_text', true);
-    $btn_link = get_post_meta($post->ID, '_wbk_slider1_btn_link', true);
+    $desc     = get_post_meta($post->ID, '_webksibu_slider1_desc', true);
+    $btn_text = get_post_meta($post->ID, '_webksibu_slider1_btn_text', true);
+    $btn_link = get_post_meta($post->ID, '_webksibu_slider1_btn_link', true);
 
-    wp_nonce_field('wbk_slider1_save_meta', 'wbk_slider1_nonce');
+    wp_nonce_field('webksibu_slider1_save_meta', 'webksibu_slider1_nonce');
     ?>
     <table class="form-table">
         <tr>
             <th>Description</th>
             <td>
-                <textarea class="large-text" rows="4" name="wbk_slider1_desc"><?php echo esc_textarea($desc); ?></textarea>
+                <textarea class="large-text" rows="4" name="webksibu_slider1_desc"><?php echo esc_textarea($desc); ?></textarea>
             </td>
         </tr>
         <tr>
             <th>Button Text</th>
             <td>
-                <input class="regular-text" name="wbk_slider1_btn_text" value="<?php echo esc_attr($btn_text); ?>">
+                <input class="regular-text" name="webksibu_slider1_btn_text" value="<?php echo esc_attr($btn_text); ?>">
             </td>
         </tr>
         <tr>
             <th>Button Link</th>
             <td>
-                <input class="large-text" type="url" name="wbk_slider1_btn_link" value="<?php echo esc_attr($btn_link); ?>">
+                <input class="large-text" type="url" name="webksibu_slider1_btn_link" value="<?php echo esc_attr($btn_link); ?>">
             </td>
         </tr>
     </table>
@@ -114,24 +114,24 @@ function wbk_slider1_meta_cb($post) {
     <?php
 }
 
-add_action('save_post_wbk_slider1', function ($post_id) {
+add_action('save_post_webksibu_slider1', function ($post_id) {
 
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
     if ( ! current_user_can('edit_post', $post_id) ) return;
 
     if (
-        ! isset($_POST['wbk_slider1_nonce']) ||
-        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['wbk_slider1_nonce']) ), 'wbk_slider1_save_meta')
+        ! isset($_POST['webksibu_slider1_nonce']) ||
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['webksibu_slider1_nonce']) ), 'webksibu_slider1_save_meta')
     ) return;
 
-    update_post_meta($post_id, '_wbk_slider1_desc',
-        sanitize_textarea_field( wp_unslash($_POST['wbk_slider1_desc'] ?? '') )
+    update_post_meta($post_id, '_webksibu_slider1_desc',
+        sanitize_textarea_field( wp_unslash($_POST['webksibu_slider1_desc'] ?? '') )
     );
-    update_post_meta($post_id, '_wbk_slider1_btn_text',
-        sanitize_text_field( wp_unslash($_POST['wbk_slider1_btn_text'] ?? '') )
+    update_post_meta($post_id, '_webksibu_slider1_btn_text',
+        sanitize_text_field( wp_unslash($_POST['webksibu_slider1_btn_text'] ?? '') )
     );
-    update_post_meta($post_id, '_wbk_slider1_btn_link',
-        esc_url_raw( wp_unslash($_POST['wbk_slider1_btn_link'] ?? '') )
+    update_post_meta($post_id, '_webksibu_slider1_btn_link',
+        esc_url_raw( wp_unslash($_POST['webksibu_slider1_btn_link'] ?? '') )
     );
 });
 
@@ -143,12 +143,12 @@ add_action('save_post_wbk_slider1', function ($post_id) {
 
 
 /*--------------------------------------------------------------
-4. SHORTCODE [wbk_slider1]
+4. SHORTCODE [webksibu_slider1]
 --------------------------------------------------------------*/
-function wbk_slider1_shortcode() {
+function webksibu_slider1_shortcode() {
 
     $q = new WP_Query([
-        'post_type'      => 'wbk_slider1',
+        'post_type'      => 'webksibu_slider1',
         'post_status'    => 'publish',
         'posts_per_page' => 50,
         'orderby'        => 'date',
@@ -160,7 +160,7 @@ function wbk_slider1_shortcode() {
 
     ob_start();
     ?>
-    <div class="swiper wbk-tour-hero-swiper">
+    <div class="swiper webksibu-tour-hero-swiper">
         <div class="swiper-wrapper">
 
             <?php while ( $q->have_posts() ) : $q->the_post(); ?>
@@ -168,22 +168,22 @@ function wbk_slider1_shortcode() {
                 $img = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : '';
                 if ( ! $img ) continue;
 
-                $desc     = (string) get_post_meta(get_the_ID(), '_wbk_slider1_desc', true);
-                $btn_text = (string) get_post_meta(get_the_ID(), '_wbk_slider1_btn_text', true);
-                $btn_link = (string) get_post_meta(get_the_ID(), '_wbk_slider1_btn_link', true);
+                $desc     = (string) get_post_meta(get_the_ID(), '_webksibu_slider1_desc', true);
+                $btn_text = (string) get_post_meta(get_the_ID(), '_webksibu_slider1_btn_text', true);
+                $btn_link = (string) get_post_meta(get_the_ID(), '_webksibu_slider1_btn_link', true);
                 ?>
 
-                <div class="swiper-slide wbk-swiper-slide">
+                <div class="swiper-slide webksibu-swiper-slide">
 
-                    <div class="wbk-slide-bg" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
-                    <div class="wbk-slide-overlay"></div>
+                    <div class="webksibu-slide-bg" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
+                    <div class="webksibu-slide-overlay"></div>
 
-                    <div class="wbk-slide-content">
+                    <div class="webksibu-slide-content">
                         <h2><?php echo esc_html( get_the_title() ); ?></h2>
                         <p><?php echo wp_kses_post( $desc ); ?></p>
 
                         <?php if ( $btn_text ) : ?>
-                            <a href="<?php echo esc_url($btn_link); ?>" class="wbk-hero-cta">
+                            <a href="<?php echo esc_url($btn_link); ?>" class="webksibu-hero-cta">
                                 <?php echo esc_html($btn_text); ?>
                             </a>
                         <?php endif; ?>
@@ -193,9 +193,9 @@ function wbk_slider1_shortcode() {
             <?php endwhile; wp_reset_postdata(); ?>
 
         </div>
-        <div class="swiper-pagination wbk-swiper-pagination"></div>
+        <div class="swiper-pagination webksibu-swiper-pagination"></div>
     </div>
     <?php
     return ob_get_clean();
 }
-add_shortcode( 'wbk_slider1', 'wbk_slider1_shortcode' );
+add_shortcode( 'webksibu_slider1', 'webksibu_slider1_shortcode' );

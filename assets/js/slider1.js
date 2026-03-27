@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    document.querySelectorAll('.wbk-tour-hero-swiper').forEach((sliderEl) => {
+    document.querySelectorAll('.webksibu-tour-hero-swiper').forEach((sliderEl) => {
         if (sliderEl.dataset.wbkInitialized) return;
         sliderEl.dataset.wbkInitialized = '1';
 
         const slides = Array.from(sliderEl.querySelectorAll('.swiper-slide'));
-        const pagination = sliderEl.querySelector('.wbk-swiper-pagination');
+        const pagination = sliderEl.querySelector('.webksibu-swiper-pagination');
 
         if (!slides.length) return;
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const title = activeSlide.querySelector('h2');
             const text  = activeSlide.querySelector('p');
-            const btn   = activeSlide.querySelector('.wbk-hero-cta');
+            const btn   = activeSlide.querySelector('.webksibu-hero-cta');
 
             [title, text, btn].forEach((el, i) => {
                 if (!el) return;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeSlide = root.querySelector('.swiper-slide-active');
             if (!activeSlide) return;
 
-            activeSlide.querySelectorAll('h2, p, .wbk-hero-cta').forEach((el) => {
+            activeSlide.querySelectorAll('h2, p, .webksibu-hero-cta').forEach((el) => {
                 el.style.transition = 'none';
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
